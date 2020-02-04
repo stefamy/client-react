@@ -14,6 +14,8 @@ class CourseManagerComponent extends React.Component {
     layout: "table",
     editingCourse: false,
     newCourseTitle: "Whatever",
+    newOwner: "me",
+    newDateModified: new Date().toLocaleDateString(),
     courses: []
   };
 
@@ -66,7 +68,9 @@ class CourseManagerComponent extends React.Component {
 
   addCourse = async () => {
     const newCourse = {
-      title: this.state.newCourseTitle
+      title: this.state.newCourseTitle,
+      owner: this.state.newOwner,
+      dateModified: this.state.newDateModified
     };
     const actualCourse = await createCourse(newCourse);
     console.log(actualCourse);
@@ -87,30 +91,30 @@ class CourseManagerComponent extends React.Component {
 
   updateForm = e =>
     this.setState({
-      newCourseTitle: e.target.value
+      newCourseTitle: e.target.value,
+      newOwner: "me",
+      newDateModified: new Date().toLocaleDateString()
     });
 
   render() {
     return (
-      <div>
-        <h1>Course Manager</h1>
+      <div class="course-manager">
         {this.state.editingCourse && (
           <CourseEditor hideCourseEditor={this.hideCourseEditor} />
         )}
         {!this.state.editingCourse && (
-          <div>
-            <CourseManagerHeading />
-            <input
-              onChange={this.updateForm}
-              value={this.state.newCourseTitle}
+          <div class="container-fluid pl-0 pr-0">
+            <CourseManagerHeading
+              updateForm={this.updateForm}
+              newCourseTitle={this.state.newCourseTitle}
+              addCourse={this.addCourse}
             />
-            <button onClick={this.addCourse}>Add Course</button>
-            <button onClick={this.toggle}>Toggle</button>
             {this.state.layout === "table" && (
               <CourseTableComponent
                 showCourseEditor={this.showCourseEditor}
                 deleteCourse={this.deleteCourse}
                 courses={this.state.courses}
+                toggle={this.toggle}
               />
             )}
             {this.state.layout === "grid" && (
@@ -118,6 +122,7 @@ class CourseManagerComponent extends React.Component {
                 showCourseEditor={this.showCourseEditor}
                 deleteCourse={this.deleteCourse}
                 courses={this.state.courses}
+                toggle={this.toggle}
               />
             )}
           </div>
