@@ -1,29 +1,92 @@
 import React from "react";
 import ModuleList from "./ModuleList";
-import './CourseEditor.css'
+import "./CourseEditor.css";
 
-const CourseEditor = ({hideCourseEditor}) =>
-    <div>
-        <button onClick={hideCourseEditor}>Close</button>
-        <h2>Course Editor</h2>
-        <div className="row">
-            <div className="col-4">
-                <h4>Module List</h4>
-                <ModuleList modules={[
-                    {_id: "123", title: "CSS"},
-                    {_id: "234", title: "HTML"},
-                    {_id: "345", title: "React JS"},
-                ]}/>
-            </div>
-            <div className="col-8">
-                <h4>Lesson Tabs</h4>
-                <ul>
-                    <li>Lesson 1</li>
-                    <li>Lesson 2</li>
-                    <li>Lesson 3</li>
-                </ul>
-            </div>
+const CourseEditor = ({ hideCourseEditor }) => (
+  <div class="course-editor-content">
+    <div class="nav-container navbar-dark navbar bg-dark">
+      <nav class="nav sticky-top sticky-top navbar-expand-lg justify-content-between">
+        <a
+          class="nav-link navbar-brand wbdv-course-editor wbdv-close"
+          href="/course-manager/course-manager.template.client.html"
+        >
+          <button onClick={hideCourseEditor}>
+            <i class="fas fa-times"></i>
+          </button>
+        </a>
+        <span class="navbar-brand wbdv-course-title">CS5610 - WebDev</span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                Build
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link wbdv-page-tab" href="#">
+                Pages
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                Theme
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                Store
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                Apps
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                Settings
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link wbdv-new-page-btn" href="#">
+                <i class="fas fa-plus"></i>
+              </a>
+            </li>
+          </ul>
         </div>
+      </nav>
     </div>
+    <div className="row course-editor-content-wrap">
+      <div className="col-4 sidebar-left">
+        <ModuleList
+          modules={[
+            { _id: "123", title: "CSS" },
+            { _id: "234", title: "HTML" },
+            { _id: "345", title: "React JS" }
+          ]}
+        />
+      </div>
+      <div className="col-8 content-right">
+        <h4>Lesson Tabs</h4>
+        <ul>
+          <li>Lesson 1</li>
+          <li>Lesson 2</li>
+          <li>Lesson 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+);
 
-export default CourseEditor
+export default CourseEditor;

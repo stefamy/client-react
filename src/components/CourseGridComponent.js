@@ -7,10 +7,9 @@ const CourseGridComponent = ({
   showCourseEditor,
   toggle
 }) => (
-  <div>
-    <h2>Course Grid {courses.length}</h2>
-    <ul>
-      <li class="row course-row wbdv-row wbdv-course">
+  <div class="container-content">
+    <div class="p-0 m-auto">
+      <div class="row course-row wbdv-row wbdv-course">
         <div class="col-lg-6 col course-title-heading wbdv-row wbdv-title">
           <span class="title">Title</span>
         </div>
@@ -31,18 +30,20 @@ const CourseGridComponent = ({
             <i class="fas fa-sort-alpha-up"></i>
           </button>
         </div>
-      </li>
-      {courses.map(function(course, index) {
-        return (
-          <CourseGridCell
-            showCourseEditor={showCourseEditor}
-            deleteCourse={deleteCourse}
-            key={course._id}
-            course={course}
-          />
-        );
-      })}
-    </ul>
+      </div>
+      <div class="row course-grid">
+        {courses.map(function(course, index) {
+          return (
+            <CourseGridCell
+              showCourseEditor={showCourseEditor}
+              deleteCourse={deleteCourse}
+              key={course._id}
+              course={course}
+            />
+          );
+        })}
+      </div>
+    </div>
   </div>
 );
 export default CourseGridComponent;

@@ -1,6 +1,13 @@
 import React from "react";
 
-const ModuleListItem = ({module}) =>
-    <li>{module.title}</li>
-
-export default ModuleListItem
+const ModuleListItem = ({ module }) => (
+  <li class="module-tab nav-item wbdv-module-item">
+    <a href="#">
+      <span class="module-name wbdv-module-item-title">{module.title}</span>
+      <button type="button" class="wbdv-module-item-delete-btn delete-button">
+        <i class="fas fa-times"></i>
+      </button>
+    </a>
+  </li>
+);
+export default ModuleListItem;

@@ -13,7 +13,7 @@ class CourseTableRow extends React.Component {
 
   render() {
     return (
-      <li class="course-row wbdv-row wbdv-course">
+      <div class="course-row wbdv-row wbdv-course">
         <div class="row width-limiter">
           <div class="col-lg-6 col course-title wbdv-row wbdv-title">
             <i class="fas fa-file-alt wbdv-row wbdv-icon"></i>
@@ -66,7 +66,7 @@ class CourseTableRow extends React.Component {
             </button>
           </div>
         </div>
-      </li>
+      </div>
     );
   }
 }

@@ -7,12 +7,9 @@ const CourseTableComponent = ({
   showCourseEditor,
   toggle
 }) => (
-  <div>
-    <div class="width-limiter">
-      <h2>Course Table ({courses.length})</h2>
-    </div>
-    <ul class="p-0 m-auto">
-      <li class="row course-row wbdv-row wbdv-course">
+  <div class="container-content">
+    <div class="p-0 m-auto">
+      <div class="row course-row">
         <div class="col-lg-6 col course-title-heading wbdv-row wbdv-title">
           <span class="title">Title</span>
         </div>
@@ -33,7 +30,7 @@ const CourseTableComponent = ({
             <i class="fas fa-sort-alpha-up"></i>
           </button>
         </div>
-      </li>
+      </div>
       {courses.map(function(course, index) {
         return (
           <CourseTableRow
@@ -44,7 +41,7 @@ const CourseTableComponent = ({
           />
         );
       })}
-    </ul>
+    </div>
   </div>
 );
 export default CourseTableComponent;

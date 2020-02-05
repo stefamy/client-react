@@ -4,7 +4,7 @@ const CourseManagerHeading = ({ updateForm, newCourseTitle, addCourse }) => (
   <div class="course-manager-heading">
     <div class="width-limiter align-items-center row">
       <div class="col-1 text-center">
-        <div class="navbar navbar-dark p-0">
+        <div class="navbar navbar-light p-0">
           <button
             class="navbar-toggler m-0 p-0"
             type="button"
@@ -23,10 +23,17 @@ const CourseManagerHeading = ({ updateForm, newCourseTitle, addCourse }) => (
         </h1>
       </div>
       <div class="col">
-        <input onChange={updateForm} value={newCourseTitle} />
+        <input
+          type="text"
+          class="form-control"
+          onChange={updateForm}
+          value={newCourseTitle}
+        />
+      </div>
+      <div class="col-1">
         <button
           type="button"
-          class="btn-plus wbdv-button wbdv-add-course"
+          class="btn-plus wbdv-button text-align-left wbdv-add-course"
           onClick={addCourse}
         >
           <i class="fas fa-plus"></i>
