@@ -9,7 +9,7 @@
 
 .sidebar-left {
   background: #282c34;
-  padding: 0 15px 0 30px;
+  padding: 0 30px;
 }
 
 .sidebar-left ul {
@@ -114,6 +114,10 @@
   .sidebar-menu .sidebar-width-limiter {
     margin-right: auto;
     width: 100%;
+  }
+  .editor-width-limiter {
+    margin: auto;
+    padding: 30px 20px;
   }
 }
 

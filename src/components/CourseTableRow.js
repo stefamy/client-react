@@ -14,9 +14,9 @@ class CourseTableRow extends React.Component {
   render() {
     return (
       <div class="course-row wbdv-row wbdv-course">
-        <div class="row width-limiter">
-          <div class="col-lg-6 col course-title wbdv-row wbdv-title">
-            <i class="fas fa-file-alt wbdv-row wbdv-icon"></i>
+        <div class="row">
+          <div class="col-lg-6 col-10 course-title wbdv-row wbdv-title">
+            <i className="fa fa-file-alt wbdv-row wbdv-icon"></i>
             {!this.state.editing && (
               <a href="#" onClick={this.props.showCourseEditor}>
                 <span class="course-title">{this.state.course.title}</span>
@@ -45,24 +45,29 @@ class CourseTableRow extends React.Component {
             <span class="gray detail">{this.state.course.dateModified}</span>
           </div>
           <div class="col-2 course-delete text-center">
-            <button onClick={() => this.setState({ editing: true })}>
-              <i class="fas fa-pencil-alt"></i>
-            </button>
+            {!this.state.editing && (
+              <button onClick={() => this.setState({ editing: true })}>
+                <i className="fa fa-pencil"></i>
+              </button>
+            )}
+
+            {this.state.editing && (
+              <button
+                onClick={e => {
+                  updateCourse(
+                    this.state.course._id,
+                    this.state.course
+                  ).then(status => {});
+                  this.setState({
+                    editing: false
+                  });
+                }}
+              >
+                <i className="fa fa-check text-success"></i>
+              </button>
+            )}
             <button onClick={() => this.props.deleteCourse(this.props.course)}>
-              <i class="fas fa-times"></i>
-            </button>
-            <button
-              onClick={e => {
-                updateCourse(
-                  this.state.course._id,
-                  this.state.course
-                ).then(status => {});
-                this.setState({
-                  editing: false
-                });
-              }}
-            >
-              <i class="fas fa-check"></i>
+              <i className="fa fa-times text-danger"></i>
             </button>
           </div>
         </div>

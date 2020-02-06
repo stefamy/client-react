@@ -1,15 +1,15 @@
 import React from "react";
-import CourseManagerHeading from "./CourseManagerHeading";
-import CourseTableComponent from "./CourseTableComponent";
-import CourseGridComponent from "./CourseGridComponent";
-import CourseEditor from "./CourseEditor/CourseEditor";
+import CourseManagerHeading from "../components/CourseManagerHeading";
+import CourseTableContainer from "./CourseTableContainer";
+import CourseGridContainer from "./CourseGridContainer";
+import CourseEditor from "../components/CourseEditor/CourseEditor";
 import {
   deleteCourse,
   createCourse,
   findAllCourses
 } from "../services/CourseService";
 
-class CourseManagerComponent extends React.Component {
+class CourseManagerContainer extends React.Component {
   state = {
     layout: "table",
     editingCourse: false,
@@ -110,7 +110,7 @@ class CourseManagerComponent extends React.Component {
               addCourse={this.addCourse}
             />
             {this.state.layout === "table" && (
-              <CourseTableComponent
+              <CourseTableContainer
                 showCourseEditor={this.showCourseEditor}
                 deleteCourse={this.deleteCourse}
                 courses={this.state.courses}
@@ -118,7 +118,7 @@ class CourseManagerComponent extends React.Component {
               />
             )}
             {this.state.layout === "grid" && (
-              <CourseGridComponent
+              <CourseGridContainer
                 showCourseEditor={this.showCourseEditor}
                 deleteCourse={this.deleteCourse}
                 courses={this.state.courses}
@@ -127,9 +127,14 @@ class CourseManagerComponent extends React.Component {
             )}
           </div>
         )}
+        <div id="footer">
+          <div class="width-limiter">
+            <p>Amy Stefani | Northeastern University CS5610 | Spring 2020</p>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default CourseManagerComponent;
+export default CourseManagerContainer;

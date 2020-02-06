@@ -1,8 +1,8 @@
 import React from "react";
 // import logo from './logo.svg';
 import "./App.css";
-import CourseManagerComponent from "./components/CourseManagerComponent";
+import CourseManagerContainer from "./containers/CourseManagerContainer";
 
-const App = () => <CourseManagerComponent />;
+const App = () => <CourseManagerContainer />;
 
 export default App;

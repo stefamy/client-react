@@ -1,6 +1,7 @@
 import React from "react";
 import ModuleList from "./ModuleList";
-import "./CourseEditor.css";
+import StaticModuleContent from "./StaticModuleContent";
+import "../../css/CourseEditor.css";
 
 const CourseEditor = ({ hideCourseEditor }) => (
   <div class="course-editor-content">
@@ -11,7 +12,7 @@ const CourseEditor = ({ hideCourseEditor }) => (
           href="/course-manager/course-manager.template.client.html"
         >
           <button onClick={hideCourseEditor}>
-            <i class="fas fa-times"></i>
+            <i className="fa fa-times"></i>
           </button>
         </a>
         <span class="navbar-brand wbdv-course-title">CS5610 - WebDev</span>
@@ -60,7 +61,7 @@ const CourseEditor = ({ hideCourseEditor }) => (
             </li>
             <li class="nav-item">
               <a class="nav-link wbdv-new-page-btn" href="#">
-                <i class="fas fa-plus"></i>
+                <i className="fa fa-plus"></i>
               </a>
             </li>
           </ul>
@@ -68,7 +69,7 @@ const CourseEditor = ({ hideCourseEditor }) => (
       </nav>
     </div>
     <div className="row course-editor-content-wrap">
-      <div className="col-4 sidebar-left">
+      <div className="col-md-4 col-12 sidebar-left sidebar-menu">
         <ModuleList
           modules={[
             { _id: "123", title: "CSS" },
@@ -77,14 +78,7 @@ const CourseEditor = ({ hideCourseEditor }) => (
           ]}
         />
       </div>
-      <div className="col-8 content-right">
-        <h4>Lesson Tabs</h4>
-        <ul>
-          <li>Lesson 1</li>
-          <li>Lesson 2</li>
-          <li>Lesson 3</li>
-        </ul>
-      </div>
+      <StaticModuleContent />
     </div>
   </div>
 );

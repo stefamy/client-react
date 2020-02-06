@@ -5,7 +5,7 @@ const ModuleListItem = ({ module }) => (
     <a href="#">
       <span class="module-name wbdv-module-item-title">{module.title}</span>
       <button type="button" class="wbdv-module-item-delete-btn delete-button">
-        <i class="fas fa-times"></i>
+        <i className="fa fa-times"></i>
       </button>
     </a>
   </li>

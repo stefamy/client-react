@@ -39,6 +39,7 @@
 
 .container-content {
   background-color: #ebebeb;
+  padding-bottom: 30px;
 }
 
 .course-manager-heading {
@@ -84,84 +85,32 @@
   display: none;
 }
 
-/* ------- Course Grid / Card -------- */
-
-.course-grid {
-  padding: 15px 30px;
-}
-.course-card-outer {
-  padding: 30px;
-}
-.course-card {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-end;
-  height: 500px;
-  background-color: #fff;
-  border: 2px solid #ccc;
-}
-.course-card-info {
-  background: #fff;
-  border-top: 2px solid #ccc;
-  padding: 15px 20px;
-}
-
-/* ------- Course List / Row -------- */
-
-.course-row {
-  margin: auto;
-  padding: 0;
-  background-color: #fff;
-  transition: background-color 0.2s;
-  padding: 18px 0;
-  align-items: center;
-}
-
-.wbdv-course {
-  cursor: pointer;
-}
-
-.wbdv-course:hover {
-  background-color: #a1c8f1;
-}
-.wbdv-course.editing {
-  background-color: #4793e0;
-}
-
-.wbdv-courseediting p,
-.wbdv-course.editing span,
-.wbdv-course.editing i {
+.btn-plus i {
+  background-color: red;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
   color: #fff;
+  transition: background-color 0.2s;
 }
 
-.wbdv-course .course-title {
-  text-align: left;
-  font-size: 15px;
-  line-height: 20px;
-  padding-left: 15px;
-}
-.wbdv-course i {
-  color: #4793df;
-}
-.course-title .title {
-  display: inline-block;
-  padding: 0 10px;
-}
-.wbdv-course:hover i,
-.wbdv-courseactive i,
-.wbdv-course:hover span,
-.wbdv-course:active span,
-.wbdv-course:hover,
-.wbdv-course:active {
-  text-decoration: none;
-  color: #000;
+.btn-plus i:hover,
+.btn-plus i:active {
+  background-color: #000;
 }
 
-.section-title {
-  padding: 20px 0 8px;
+#footer {
+  background-color: #444;
+  text-align: center;
+  color: #fff;
+  padding: 5px 15px;
 }
-
+#footer p {
+  font-size: 14px;
+  margin: auto;
+}
 @media all and (min-width: 992px) {
   .hide-mobile {
     display: block;

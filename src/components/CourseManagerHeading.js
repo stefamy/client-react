@@ -3,7 +3,7 @@ import React from "react";
 const CourseManagerHeading = ({ updateForm, newCourseTitle, addCourse }) => (
   <div class="course-manager-heading">
     <div class="width-limiter align-items-center row">
-      <div class="col-1 text-center">
+      <div class="col-1 text-center p-0">
         <div class="navbar navbar-light p-0">
           <button
             class="navbar-toggler m-0 p-0"
@@ -36,7 +36,7 @@ const CourseManagerHeading = ({ updateForm, newCourseTitle, addCourse }) => (
           class="btn-plus wbdv-button text-align-left wbdv-add-course"
           onClick={addCourse}
         >
-          <i class="fas fa-plus"></i>
+          <i className="fa fa-plus"></i>
         </button>
       </div>
     </div>
