@@ -8,7 +8,8 @@ export default class ModuleListComponent extends React.Component {
 
   state = {
     activeModuleId: this.props.moduleId,
-    editingModuleId: ""
+    editingModuleId: "",
+    newModuleTitle: ""
   };
 
   render() {
@@ -24,7 +25,8 @@ export default class ModuleListComponent extends React.Component {
                   `/course/${this.props.courseId}/module/${moduleId}`
                 );
                 this.setState({
-                  editingModuleId: module._id
+                  editingModuleId: module._id,
+                  newModuleTitle: module.title
                 });
               }}
               select={() => {
@@ -33,23 +35,39 @@ export default class ModuleListComponent extends React.Component {
                   `/course/${this.props.courseId}/module/${moduleId}`
                 );
                 this.setState({
-                  activeModuleId: module._id
+                  activeModuleId: module._id,
+                  newModuleTitle: module.title
+                });
+              }}
+              onTextEntry={entry => {
+                this.setState({
+                  newModuleTitle: entry
                 });
               }}
               save={() => {
+                const moduleId = module._id;
+                const courseId = this.props.courseId;
+                const newTitle = this.state.newModuleTitle;
                 this.setState({
                   editingModuleId: ""
                 });
+                this.props
+                  .updateModule(moduleId, {
+                    title: newTitle
+                  })
+                  .then(() => {
+                    this.props.history.push(`/course/${courseId}`);
+                  });
               }}
               deleteModule={() => {
                 const moduleId = module._id;
                 const courseId = this.props.courseId;
+                this.setState({
+                  editingModuleId: "",
+                  newModuleTitle: ""
+                });
                 this.props.deleteModule(moduleId).then(() => {
                   this.props.history.push(`/course/${courseId}`);
-                });
-
-                this.setState({
-                  editingModuleId: ""
                 });
               }}
               editing={module._id === this.state.editingModuleId}

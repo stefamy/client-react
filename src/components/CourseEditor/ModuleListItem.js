@@ -12,17 +12,30 @@ const ModuleListItem = ({
   module,
   active,
   deleteModule,
-  select
+  select,
+  onTextEntry
 }) => (
   <li onClick={select} className={`list-group-item ${active ? "active" : ""}`}>
-    {module.title}
     {editing && (
       <span>
+        <input
+          className="form-control"
+          type="text"
+          placeholder="New Title"
+          onChange={e => {
+            onTextEntry(e.target.value);
+          }}
+        ></input>
         <button onClick={deleteModule}>Delete</button>
         <button onClick={save}>Save</button>
       </span>
     )}
-    {!editing && <button onClick={edit}>Edit</button>}
+    {!editing && (
+      <span>
+        {module.title}
+        <button onClick={edit}>Edit</button>
+      </span>
+    )}
   </li>
 );
 

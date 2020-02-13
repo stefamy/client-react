@@ -30,13 +30,6 @@ class CourseManagerContainer extends React.Component {
     this.setState({
       courses: courses
     });
-
-    // courseService.findAllCourses()
-    //     .then(courses => {
-    //         this.setState({
-    //             courses: courses
-    //         })
-    //     })
   };
 
   deleteCourse = async deletedToCourse => {
@@ -45,22 +38,6 @@ class CourseManagerContainer extends React.Component {
     this.setState({
       courses: courses
     });
-    // courseService.deleteCourse(deletedToCourse._id)
-    //     .then(status => {
-    //         return courseService.findAllCourses()
-    //     })
-    //     .then(courses => {
-    //         this.setState({
-    //             courses: courses
-    //         })
-    //     })
-
-    // this.setState(prevState => ({
-    //         courses: prevState.courses.filter(course =>
-    //             course._id !== deletedToCourse._id
-    //         )
-    //     })
-    // )
   };
 
   addCourse = () => {
@@ -75,17 +52,6 @@ class CourseManagerContainer extends React.Component {
           courses: courses
         });
       });
-
-    // this.setState(prevState => ({
-    //     courses: [
-    //         ...prevState.courses,
-    //         {
-    //             _id: (new Date()).getTime() + '',
-    //             title: prevState.newCourseTitle
-    //         }
-    //     ]
-    // })
-    // )
   };
 
   toggle = () => {
@@ -101,10 +67,6 @@ class CourseManagerContainer extends React.Component {
     });
   };
 
-  // (state1) ==== event1 ====> (state2)
-  // (state1) ==== event2 ====> (state3)
-  // ==== eventX ====> (stateY)
-  //
   editCourse = course => {
     this.setState(prevState => ({
       courses: prevState.courses.map(c => {
