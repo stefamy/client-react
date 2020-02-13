@@ -22,21 +22,21 @@ export const createLesson = (moduleId, lesson) =>
 
 /**
  * GET
- * Returns the module matching the passed module id.
+ * Returns the lesson matching the passed lesson id.
  */
-export const findModule = moduleId =>
-  fetch(MODULE_API_URL(moduleId), {
+export const findLesson = lessonId =>
+  fetch(LESSONS_API_URL(lessonId), {
     method: "GET"
   }).then(response => response.json());
 
 /**
  * UPDATE
- * Updates the module matching the passed id with the module content provided.
+ * Updates the lesson matching the passed id with the lesson content provided.
  */
-export const updateModule = (moduleId, module) =>
-  fetch(MODULE_API_URL(moduleId), {
+export const updateLesson = (lessonId, lesson) =>
+  fetch(LESSONS_API_URL(lessonId), {
     method: "PUT",
-    body: JSON.stringify(module),
+    body: JSON.stringify(lesson),
     headers: {
       "content-type": "application/json"
     }
@@ -44,17 +44,17 @@ export const updateModule = (moduleId, module) =>
 
 /**
  * DELETE
- * Deletes the module matching the passed id.
+ * Deletes the lesson matching the passed id.
  */
-export const deleteModule = moduleId =>
-  fetch(MODULE_API_URL(moduleId), {
+export const deleteLesson = lessonId =>
+  fetch(LESSONS_API_URL(lessonId), {
     method: "DELETE"
   }).then(response => response.json());
 
 export default {
-  findModulesForCourse,
-  createModule,
-  findModule,
-  updateModule,
-  deleteModule
+  findLessonsForModule,
+  createLesson,
+  findLesson,
+  updateLesson,
+  deleteLesson
 };
