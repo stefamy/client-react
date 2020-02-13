@@ -23,9 +23,6 @@ export default class LessonTabComponent extends React.Component {
   };
 
   render() {
-    console.log("this state:", this.state);
-    console.log("this props:", this.props);
-
     return (
       <ul className="nav nav-tabs">
         {this.props.lessons &&
@@ -33,10 +30,6 @@ export default class LessonTabComponent extends React.Component {
             <LessonTabItem
               key={lesson._id}
               edit={() => {
-                // const lessonId = lesson._id;
-                // this.props.history.push(
-                //   `/course/${this.props.moduleId}/module/${lessonId}`
-                // );
                 this.setState({
                   editingLessonId: lesson._id,
                   newLessonTitle: "hi"
@@ -44,9 +37,6 @@ export default class LessonTabComponent extends React.Component {
               }}
               select={() => {
                 const lessonId = lesson._id;
-                // this.props.history.push(
-                //   `/course/${this.props.lessonId}/lesson/${lessonId}`
-                // );
                 this.setState({
                   activeLessonId: lessonId,
                   newLessonTitle: "new title"
@@ -68,11 +58,6 @@ export default class LessonTabComponent extends React.Component {
                 this.props.updateLesson(lessonId, {
                   title: newTitle
                 });
-                //   .then(() => {
-                //     this.props.history.push(
-                //       `/lesson/${lessonId}/module/${moduleId}`
-                //     );
-                //   });
               }}
               deleteLesson={() => {
                 const lessonId = module._id;
