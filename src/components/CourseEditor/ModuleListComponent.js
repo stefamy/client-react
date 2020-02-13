@@ -6,6 +6,10 @@ export default class ModuleListComponent extends React.Component {
     this.props.findModulesForCourse(this.props.courseId);
   }
 
+  componentDidUpdate() {
+    this.props.findModulesForCourse(this.props.courseId);
+  }
+
   state = {
     activeModuleId: this.props.moduleId,
     editingModuleId: "",
@@ -49,14 +53,17 @@ export default class ModuleListComponent extends React.Component {
                 const courseId = this.props.courseId;
                 const newTitle = this.state.newModuleTitle;
                 this.setState({
-                  editingModuleId: ""
+                  editingModuleId: "",
+                  activeModuleId: ""
                 });
                 this.props
                   .updateModule(moduleId, {
                     title: newTitle
                   })
                   .then(() => {
-                    this.props.history.push(`/course/${courseId}`);
+                    this.props.history.push(
+                      `/course/${courseId}/module/${moduleId}`
+                    );
                   });
               }}
               deleteModule={() => {

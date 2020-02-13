@@ -16,7 +16,7 @@ const ModuleListItem = ({
   onTextEntry
 }) => (
   <li onClick={select} className={`list-group-item ${active ? "active" : ""}`}>
-    {editing && (
+    {editing && active && (
       <span>
         <input
           className="form-control"
@@ -30,7 +30,7 @@ const ModuleListItem = ({
         <button onClick={save}>Save</button>
       </span>
     )}
-    {!editing && (
+    {(!editing || !active) && (
       <span>
         {module.title}
         <button onClick={edit}>Edit</button>
