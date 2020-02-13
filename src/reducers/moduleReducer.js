@@ -6,9 +6,6 @@ import {
   UPDATE_MODULE
 } from "../actions/moduleActions";
 
-// (state A) == action 1 ==> (state B)
-// (state A) == action 2 ==> (state C)
-
 const moduleReducer = (state = { modules: [] }, action) => {
   switch (action.type) {
     case CREATE_MODULE:
