@@ -1,20 +1,20 @@
-import { LESSONS_API_URL, MODULES_LESSONS_API_URL } from "../common/constants";
+import { LESSONS_TOPICS_API_URL, TOPICS_API_URL } from "../common/constants";
 
 /**
  * FETCH
- * Returns lessons belonging to specific module id.
+ * Returns topics belonging to specific lesson id.
  */
-export const findLessonsForModule = moduleId =>
-  fetch(MODULES_LESSONS_API_URL(moduleId)).then(response => response.json());
+export const findTopicsForLesson = lessonId =>
+  fetch(LESSONS_TOPICS_API_URL(lessonId)).then(response => response.json());
 
 /**
  * POST
- * Creates new lesson with the passed information under the passed module id.
+ * Creates new topic with the passed information under the passed lesson id.
  */
-export const createLesson = (moduleId, lesson) =>
-  fetch(LESSONS_API_URL(moduleId), {
+export const createTopic = (lessonId, topic) =>
+  fetch(TOPICS_API_URL(lessonId), {
     method: "POST",
-    body: JSON.stringify(lesson),
+    body: JSON.stringify(topic),
     headers: {
       "content-type": "application/json"
     }
@@ -22,21 +22,21 @@ export const createLesson = (moduleId, lesson) =>
 
 /**
  * GET
- * Returns the lesson matching the passed lesson id.
+ * Returns the lesson matching the passed topic id.
  */
-export const findLesson = lessonId =>
-  fetch(LESSONS_API_URL(lessonId), {
+export const findTopic = topicId =>
+  fetch(TOPICS_API_URL(topicId), {
     method: "GET"
   }).then(response => response.json());
 
 /**
  * UPDATE
- * Updates the lesson matching the passed id with the lesson content provided.
+ * Updates the topic matching the passed id with the topic content provided.
  */
-export const updateLesson = (lessonId, lesson) =>
-  fetch(LESSONS_API_URL(lessonId), {
+export const updateTopic = (topicId, topic) =>
+  fetch(TOPICS_API_URL(topicId), {
     method: "PUT",
-    body: JSON.stringify(lesson),
+    body: JSON.stringify(topic),
     headers: {
       "content-type": "application/json"
     }
@@ -44,17 +44,17 @@ export const updateLesson = (lessonId, lesson) =>
 
 /**
  * DELETE
- * Deletes the lesson matching the passed id.
+ * Deletes the topic matching the passed id.
  */
-export const deleteLesson = lessonId =>
-  fetch(LESSONS_API_URL(lessonId), {
+export const deleteTopic = topicId =>
+  fetch(TOPICS_API_URL(topicId), {
     method: "DELETE"
   }).then(response => response.json());
 
 export default {
-  findLessonsForModule,
-  createLesson,
-  findLesson,
-  updateLesson,
-  deleteLesson
+  findTopicsForTopic,
+  createTopic,
+  findTopic,
+  updateTopic,
+  deleteTopic
 };
