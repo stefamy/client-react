@@ -23,7 +23,7 @@ export const updateTopic = topic => ({
 });
 
 export const DELETE_TOPIC = "DELETE_TOPIC";
-export const DELETE_TOPIC = topics => ({
-  type: DELETE_LESSON,
+export const deleteTopic = topics => ({
+  type: DELETE_TOPIC,
   topics: topics
 });

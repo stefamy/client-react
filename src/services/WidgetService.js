@@ -1,18 +1,15 @@
+import { WIDGET_API_URL_CUSTOM, WIDGET_API_URL } from "../common/constants";
+
 export const findAllWidgets = () =>
-  fetch(
-    "https://wbdv-generic-server.herokuapp.com/api/jannunzi/widgets"
-  ).then(response => response.json());
+  fetch(WIDGET_API_URL).then(response => response.json());
 
 export const deleteWidget = widgetId =>
-  fetch(
-    `https://wbdv-generic-server.herokuapp.com/api/jannunzi//widgets/${widgetId}`,
-    {
-      method: "DELETE"
-    }
-  ).then(response => response.json());
+  fetch(WIDGET_API_URL_CUSTOM(widgetId), {
+    method: "DELETE"
+  }).then(response => response.json());
 
 export const createWidget = widget =>
-  fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/widgets", {
+  fetch(WIDGET_API_URL, {
     method: "POST",
     body: JSON.stringify(widget),
     headers: {

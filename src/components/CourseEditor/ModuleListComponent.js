@@ -39,7 +39,7 @@ export default class ModuleListComponent extends React.Component {
                   `/course/${this.props.courseId}/module/${moduleId}`
                 );
                 this.setState({
-                  activeModuleId: module._id,
+                  activeModuleId: moduleId,
                   newModuleTitle: module.title
                 });
               }}

@@ -1,11 +1,12 @@
 import React from "react";
 import ModuleList from "./ModuleListComponent";
-import LessonTabs from "./LessonTabs";
+import LessonTabsContainer from "../../containers/LessonTabsContainer";
 import { Link } from "react-router-dom";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import modules from "../../reducers/moduleReducer";
 import lessons from "../../reducers/lessonReducer";
+import topics from "../../reducers/topicReducer";
 import widgets from "../../reducers/widgetReducer";
 import ModuleListContainer from "../../containers/ModuleListContainer";
 import WidgetList from "./WidgetList";
@@ -13,7 +14,8 @@ import WidgetList from "./WidgetList";
 const reducers = combineReducers({
   modules,
   lessons,
-  widgets
+  widgets,
+  topics
 });
 
 const store = createStore(reducers);
@@ -45,7 +47,7 @@ const CourseEditorComponent = ({
           />
         </div>
         <div className="col-9">
-          <LessonTabs moduleId={moduleId} />
+          <LessonTabsContainer moduleId={moduleId} />
           {/*<TopicPills/>*/}
           <WidgetList />
         </div>

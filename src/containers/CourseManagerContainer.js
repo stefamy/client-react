@@ -1,12 +1,5 @@
 import React from "react";
-import CourseHeadingComponent from "../components/courseList/CourseHeadingComponent";
-import CourseTableComponent from "../components/courseList/CourseTableComponent";
-import CourseGridComponent from "../components/courseList/CourseGridComponent";
-// import CourseService from "../services/CourseService";
-import ModuleList from "../components/courseEditor/ModuleListComponent";
 import CourseEditorComponent from "../components/courseEditor/CourseEditorComponent";
-
-// const courseService = new CourseService()
 
 import {
   createCourse,

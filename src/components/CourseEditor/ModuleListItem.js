@@ -21,7 +21,7 @@ const ModuleListItem = ({
         <input
           className="form-control"
           type="text"
-          placeholder="New Title"
+          placeholder="New Module Title"
           onChange={e => {
             onTextEntry(e.target.value);
           }}
