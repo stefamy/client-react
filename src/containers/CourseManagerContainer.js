@@ -1,8 +1,8 @@
 import React from "react";
-import CourseEditorComponent from "../components/courseEditor/CourseEditorComponent";
-import CourseListComponent from "../components/courseList/CourseListComponent";
+import CourseEditorComponent from "./../components/courseEditor/CourseEditorComponent";
+import CourseListComponent from "./../components/courseList/CourseListComponent";
 
-import { createCourse, findAllCourses } from "../services/CourseService";
+import { createCourse, findAllCourses } from "./../services/CourseService";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 

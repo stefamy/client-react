@@ -19,13 +19,7 @@ const reducers = combineReducers({
 
 const store = createStore(reducers);
 
-const CourseEditorComponent = ({
-  hideEditor,
-  match,
-  courseId,
-  moduleId,
-  history
-}) => (
+const CourseEditorComponent = ({ courseId, moduleId, history }) => (
   <Provider store={store}>
     <div>
       <button
