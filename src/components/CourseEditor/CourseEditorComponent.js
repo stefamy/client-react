@@ -1,5 +1,4 @@
 import React from "react";
-import ModuleList from "./ModuleListComponent";
 import LessonTabsContainer from "../../containers/LessonTabsContainer";
 import { Link } from "react-router-dom";
 import { combineReducers, createStore } from "redux";

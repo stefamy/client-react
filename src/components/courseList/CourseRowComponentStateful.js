@@ -2,9 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 class CourseRowComponentStateful extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     active: false,
     course: this.props.course

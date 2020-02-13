@@ -1,9 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  COURSES_MODULES_API_URL,
-  MODULES_API_URL
-} from "../../common/constants";
 
 const LessonTabItem = ({
   save,

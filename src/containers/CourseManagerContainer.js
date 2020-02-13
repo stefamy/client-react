@@ -1,14 +1,10 @@
 import React from "react";
 import CourseEditorComponent from "../components/courseEditor/CourseEditorComponent";
-
-import {
-  createCourse,
-  findAllCourses,
-  deleteCourse
-} from "../services/CourseService";
 import CourseListComponent from "../components/courseList/CourseListComponent";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { createCourse, findAllCourses } from "../services/CourseService";
+
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class CourseManagerContainer extends React.Component {
   state = {
@@ -26,7 +22,6 @@ class CourseManagerContainer extends React.Component {
   };
 
   deleteCourse = async deletedToCourse => {
-    const status = await deleteCourse(deletedToCourse._id);
     const courses = await findAllCourses();
     this.setState({
       courses: courses
@@ -90,11 +85,6 @@ class CourseManagerContainer extends React.Component {
         <h1>Course Manager</h1>
 
         <Router>
-          {/*<Link to="/page1">Page 1</Link>*/}
-          {/*<Link to="/page2">Page 2</Link>*/}
-          {/*<Route path="/page1" component={Page1}/>*/}
-          {/*<Route path="/page2" component={Page2}/>*/}
-
           <Route
             path="/"
             exact={true}

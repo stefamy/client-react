@@ -6,10 +6,8 @@ export default class LessonTabComponent extends React.Component {
     this.props.findLessonsForModule(this.props.moduleId);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    // if (this.props.moduleId !== prevProps.moduleId) {
+  componentDidUpdate() {
     this.props.findLessonsForModule(this.props.moduleId);
-    // }
   }
 
   state = {
@@ -49,7 +47,6 @@ export default class LessonTabComponent extends React.Component {
               }}
               save={() => {
                 const lessonId = lesson._id;
-                const moduleId = this.props.moduleId;
                 const newTitle = this.state.newLessonTitle;
                 this.setState({
                   editingLessonId: "",
@@ -91,68 +88,3 @@ export default class LessonTabComponent extends React.Component {
     );
   }
 }
-
-// const stateToPropertyMapper = state => ({
-//   lessons: state.lessons.lessons
-// });
-
-// const dispatcherToPropertyMapper = dispatcher => ({
-//   findLessonsForModule: moduleId =>
-//     fetch(MODULES_LESSONS_API_URL(moduleId))
-//       .then(response => response.json())
-//       .then(lessons =>
-//         dispatcher({
-//           type: FIND_LESSONS_FOR_MODULE,
-//           lessons: lessons
-//         })
-//       ),
-//   updateLesson: async lesson => {
-//     const actualLesson = await updateLesson(lesson);
-//     dispatcher({
-//       type: UPDATE_LESSON,
-//       lesson: actualLesson,
-//       lessonId: actualLesson._id
-//     });
-//   },
-//   addLesson: moduleId =>
-//     fetch(MODULES_LESSONS_API_URL(moduleId), {
-//       method: "POST",
-//       body: JSON.stringify({ title: "New Lesson" }),
-//       headers: {
-//         "content-type": "application/json"
-//       }
-//     })
-//       .then(response => response.json())
-//       .then(actualLesson =>
-//         dispatcher({
-//           type: "CREATE_LESSON",
-//           lesson: actualLesson
-//         })
-//       ),
-//   deleteLesson: lessonId =>
-//     fetch(`${LESSONS_API_URL}/${lessonId}`, {
-//       method: "DELETE"
-//     })
-//       .then(response => response.json())
-//       .then(status =>
-//         dispatcher({
-//           type: "DELETE_LESSON",
-//           lessonId: lessonId
-//         })
-//       ),
-//   findAllLessons: () =>
-//     fetch(LESSONS_API_URL)
-//       .then(response => response.json())
-//       .then(lessons =>
-//         dispatcher({
-//           type: "FIND_ALL_LESSONS",
-//           lessons: lessons
-//         })
-//       )
-// });
-
-// export default connect(
-//   stateToPropertyMapper,
-//   dispatcherToPropertyMapper
-// )(LessonTabComponent);
-// export default LessonTabComponent;
