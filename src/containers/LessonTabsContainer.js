@@ -7,7 +7,7 @@ import {
   findLesson,
   updateLesson
 } from "../actions/lessonActions";
-import LessonTabComponent from "../components/CourseEditor/LessonTabComponent";
+import LessonTabComponent from "../components/editor/LessonTabComponent";
 
 const stateToPropertyMapper = state => ({
   lessons: state.lessons.lessons
