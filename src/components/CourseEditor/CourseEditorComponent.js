@@ -40,7 +40,7 @@ const CourseEditorComponent = ({ courseId, moduleId, history }) => (
           />
         </div>
         <div className="col-9">
-          <LessonTabsContainer moduleId={moduleId} />
+          <LessonTabsContainer history={history} moduleId={moduleId} />
           {/*<TopicPills/>*/}
           <WidgetList />
         </div>

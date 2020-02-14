@@ -7,17 +7,13 @@ export default class LessonTabComponent extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.findLessonsForModule(this.props.moduleId);
+    // this.props.findLessonsForModule(this.props.moduleId);
   }
 
   state = {
-    activeLessonId: "",
+    activeLessonId: this.props.lessonId,
     editingLessonId: "",
-    newLessonTitle: "hellooo",
-    lesson: {
-      title: "",
-      _id: ""
-    }
+    newLessonTitle: "hellooo"
   };
 
   render() {
@@ -28,9 +24,10 @@ export default class LessonTabComponent extends React.Component {
             <LessonTabItem
               key={lesson._id}
               edit={() => {
+                const lessonId = lesson._id;
                 this.setState({
                   editingLessonId: lesson._id,
-                  newLessonTitle: "hi"
+                  newLessonTitle: lesson.title
                 });
               }}
               select={() => {
@@ -47,17 +44,20 @@ export default class LessonTabComponent extends React.Component {
               }}
               save={() => {
                 const lessonId = lesson._id;
+                const moduleId = this.props.moduleId;
                 const newTitle = this.state.newLessonTitle;
                 this.setState({
                   editingLessonId: "",
                   activeLessonId: ""
                 });
-                this.props.updateLesson(lessonId, {
-                  title: newTitle
-                });
+                this.props
+                  .updateLesson(lessonId, {
+                    title: newTitle
+                  })
+                  .then(() => {});
               }}
               deleteLesson={() => {
-                const lessonId = module._id;
+                const lessonId = lesson._id;
                 const moduleId = this.props.moduleId;
                 this.setState({
                   editingLessonId: "",
@@ -65,7 +65,7 @@ export default class LessonTabComponent extends React.Component {
                 });
                 this.props.deleteLesson(lessonId).then(() => {
                   console.log("deleted!");
-                  this.props.history.push(`/module/${moduleId}`);
+                  // this.props.history.push(`/module/${moduleId}`);
                 });
               }}
               editing={lesson._id === this.state.editingLessonId}
@@ -75,11 +75,12 @@ export default class LessonTabComponent extends React.Component {
           ))}
         <li className="list-group-item">
           <button
-            onClick={() =>
-              this.props.createLesson(this.props.moduleId, {
+            onClick={() => {
+              const modId = this.props.moduleId;
+              this.props.createLesson(modId, {
                 title: "New Lesson"
-              })
-            }
+              });
+            }}
           >
             Add
           </button>
