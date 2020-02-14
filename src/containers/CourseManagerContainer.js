@@ -1,6 +1,6 @@
 import React from "react";
-import CourseListComponent from "../components/courseList/CourseListComponent";
-import CourseEditorComponent from "../components/courseEditor/CourseEditorComponent";
+import CourseListComponent from "../components/CourseList/CourseListComponent";
+import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
 
 import { createCourse, findAllCourses } from "../services/CourseService";
 

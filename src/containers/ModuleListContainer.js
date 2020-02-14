@@ -7,7 +7,7 @@ import {
   findModule,
   updateModule
 } from "../actions/moduleActions";
-import ModuleListComponent from "../components/courseEditor/ModuleListComponent";
+import ModuleListComponent from "../components/CourseEditor/ModuleListComponent";
 
 const stateToPropertyMapper = state => ({
   modules: state.modules.modules
