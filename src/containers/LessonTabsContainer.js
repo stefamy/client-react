@@ -33,7 +33,7 @@ const dispatchToPropertyMapper = dispatch => ({
   updateLesson: (lessonId, lesson) =>
     service
       .updateLesson(lessonId, lesson)
-      .then(actualLesson => dispatch(updateLesson(actualLesson)))
+      .then(lessons => dispatch(updateLesson(lessons)))
 });
 
 const LessonTabsContainer = connect(

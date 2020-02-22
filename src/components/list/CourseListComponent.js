@@ -22,18 +22,14 @@ const CourseListComponent = ({
       placeholder="New Course Title"
     />
     <button onClick={addCourse}>Add</button>
-    <button onClick={toggle}>Toggle</button>
-    {layout === "grid" && (
-      <CourseGridComponent deleteCourse={deleteCourse} courses={courses} />
-    )}
-    {layout === "table" && (
-      <CourseTableComponent
-        showEditor={showEditor}
-        editCourse={editCourse}
-        deleteCourse={deleteCourse}
-        courses={courses}
-      />
-    )}
+    {/*<button onClick={toggle}>Toggle</button>*/}
+    {/*<CourseListComponent*/}
+    {/*    showEditor={showEditor}*/}
+    {/*    editCourse={editCourse}*/}
+    {/*    deleteCourse={deleteCourse}*/}
+    {/*    courses={courses}*/}
+    {/*    />*/}
+    {/*)}*/}
   </div>
 );
 

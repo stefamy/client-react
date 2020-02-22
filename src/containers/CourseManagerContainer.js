@@ -1,10 +1,12 @@
 import React from "react";
-import CourseListComponent from "../components/list/CourseListComponent";
 import CourseEditorComponent from "../components/editor/CourseEditorComponent";
+import CourseGridComponent from "../components/list/CourseGridComponent";
+import CourseTableComponent from "../components/list/CourseTableComponent";
 
 import { createCourse, findAllCourses } from "../services/CourseService";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import CourseHeadingComponent from "../components/list/CourseHeadingComponent";
 
 class CourseManagerContainer extends React.Component {
   state = {
@@ -79,28 +81,61 @@ class CourseManagerContainer extends React.Component {
       showEditor: false
     });
 
+
+  /**
+   * @param {{courseId:string}} courseId
+   * @param {{moduleId:string}} moduleId
+   * @param {{lessonId:string}} lessonId
+   */
   render() {
     return (
       <div className="container-fluid">
         <h1>Course Manager</h1>
 
+        <CourseHeadingComponent />
+        <input
+            onChange={this.updateFormState}
+            value="helloooooo"
+            placeholder="New Course Title"
+        />
+        <button onClick={this.addCourse}>Add</button>
+
         <Router>
           <Route
-            path="/"
-            exact={true}
-            render={() => (
-              <CourseListComponent
-                updateFormState={this.updateFormState}
-                newCourseTitle={this.state.newCourseTitle}
-                addCourse={this.addCourse}
-                toggle={this.toggle}
-                deleteCourse={this.deleteCourse}
-                courses={this.state.courses}
-                layout={this.state.layout}
-                showEditor={this.showEditor}
-                editCourse={this.editCourse}
-              />
-            )}
+              path="/"
+              exact={true}
+              render={props => (
+                  <CourseTableComponent
+                      {...props}
+                      courses={this.state.courses}
+                      courseId={props.match.params.courseId}
+                      hideEditor={this.hideEditor}
+                  />
+              )}
+          />
+          <Route
+              path="/grid"
+              exact={true}
+              render={props => (
+                  <CourseGridComponent
+                      {...props}
+                      courses={this.state.courses}
+                      courseId={props.match.params.courseId}
+                      hideEditor={this.hideEditor}
+                  />
+              )}
+          />
+          <Route
+              path="/table"
+              exact={true}
+              render={props => (
+                  <CourseTableComponent
+                      {...props}
+                      courses={this.state.courses}
+                      courseId={props.match.params.courseId}
+                      hideEditor={this.hideEditor}
+                  />
+              )}
           />
           <Route
             path="/course/:courseId"
@@ -125,20 +160,20 @@ class CourseManagerContainer extends React.Component {
               />
             )}
           />
-          <Route
-            path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-            exact={true}
-            render={props => (
-              <CourseEditorComponent
-                {...props}
-                lessonId={props.match.params.lessonId}
-                moduleId={props.match.params.moduleId}
-                courseId={props.match.params.courseId}
-                hideEditor={this.hideEditor}
-              />
-            )}
-          />
-        </Router>
+          {/*<Route*/}
+          {/*  path="/course/:courseId/module/:moduleId/lesson/:lessonId"*/}
+          {/*  exact={true}*/}
+          {/*  render={props => (*/}
+          {/*    <CourseEditorComponent*/}
+          {/*      {...props}*/}
+          {/*      lessonId={props.match.params.lessonId}*/}
+          {/*      moduleId={props.match.params.moduleId}*/}
+          {/*      courseId={props.match.params.courseId}*/}
+          {/*      hideEditor={this.hideEditor}*/}
+          {/*    />*/}
+          {/*  )}*/}
+          {/*/>*/}
+       </Router>
       </div>
     );
   }

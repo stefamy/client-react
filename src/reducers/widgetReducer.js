@@ -1,29 +1,41 @@
-const widgets = [
-    // {_id: "123", title: "Widget 12", type: "HEADING"},
-    // {_id: "234", title: "Widget 23", type: "PARAGRAPH"},
-    // {_id: "345", title: "Widget 34", type: "HEADING"},
-    // {_id: "456", title: "Widget 45", type: "PARAGRAPH"}
-]
+import {
+    FIND_ALL_WIDGETS_FOR_TOPIC,
+    FIND_ALL_WIDGETS,
+    FIND_WIDGET,
+    CREATE_WIDGET,
+    DELETE_LESSON,
+    UPDATE_WIDGET
+} from "../actions/widgetActions";
 
-const widgetReducer = (state = {
-    widgets: widgets
-}, action) => {
+
+const widgetReducer = (state = { widgets: [] }, action) => {
     switch (action.type) {
-        case "ADD_WIDGET":
+        case CREATE_WIDGET:
             return {
-                widgets: [
-                    ...state.widgets,
-                    action.widget
-                ]
-            }
-        case 'DELETE_WIDGET':
+                widgets: [...state.widgets, action.widget]
+            };
+        case FIND_ALL_WIDGETS_FOR_TOPIC:
             return {
-                widgets: state.widgets.filter(widget => widget.id !== action.widgetId)
-            }
-        case "FIND_ALL_WIDGETS":
+                widgets: [...state.widgets, action.widgets]
+            };
+        case FIND_ALL_WIDGETS:
             return {
-                widgets: action.widgets
-            }
+                widgets: [...state.widgets, action.widgets]
+            };
+        case FIND_WIDGET:
+            return {
+                widgets: [...state.widgets, action.widgets]
+            };
+
+        case DELETE_LESSON:
+            return {
+                widgets: [...state.widgets, action.widgets]
+            };
+        case UPDATE_WIDGET:
+            return {
+                widget: action.widget
+            };
+
         default:
             return state
     }

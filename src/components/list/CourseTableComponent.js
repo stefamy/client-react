@@ -6,12 +6,12 @@ const CourseTableComponent = ({
   showEditor,
   editCourse,
   deleteCourse,
-  courses,
-  toggle
+  courses
 }) => (
   <div>
-    <h3>Course Table {courses.length}</h3>
-    <button onClick={() => toggle("grid")}>Toggle</button>
+    <Link to={`/grid`}>
+      Toggle</Link>
+    <h3>Course Table</h3>
     <ul className="list-group">
       {courses.map(course => (
         <CourseRowComponentStateful

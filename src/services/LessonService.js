@@ -12,7 +12,7 @@ export const findLessonsForModule = moduleId =>
  * Creates new lesson with the passed information under the passed module id.
  */
 export const createLesson = (moduleId, lesson) =>
-  fetch(LESSONS_API_URL(moduleId), {
+  fetch(MODULES_LESSONS_API_URL(moduleId), {
     method: "POST",
     body: JSON.stringify(lesson),
     headers: {

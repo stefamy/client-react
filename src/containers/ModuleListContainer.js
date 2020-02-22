@@ -33,7 +33,7 @@ const dispatchToPropertyMapper = dispatch => ({
   updateModule: (moduleId, module) =>
     service
       .updateModule(moduleId, module)
-      .then(actualModule => dispatch(updateModule(actualModule)))
+      .then(modules => dispatch(updateModule(modules)))
 });
 
 const ModuleListContainer = connect(

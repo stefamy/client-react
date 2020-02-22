@@ -1,20 +1,23 @@
 export const COURSES_API_URL =
-  "https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses";
-export const MODULES_API_URL =
-  "https://wbdv-generic-server.herokuapp.com/api/jannunzi/modules";
-export const LESSONS_API_URL =
-  "https://wbdv-generic-server.herokuapp.com/api/jannunzi/lessons";
-export const WIDGET_API_URL =
-  "https://wbdv-generic-server.herokuapp.com/api/jannunzi/widgets";
+  "https://wbdv-generic-server.herokuapp.com/api/stefamy4405/courses";
+export const LESSONS_API_URL = lessonId =>
+ `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/lessons/${lessonId}`;
 export const MODULE_API_URL = moduleId =>
-  `https://wbdv-generic-server.herokuapp.com/api/jannunzi/modules/${moduleId}`;
+  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/modules/${moduleId}`;
+
 export const COURSES_MODULES_API_URL = courseId =>
-  `https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses/${courseId}/modules`;
+  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/courses/${courseId}/modules`;
 export const MODULES_LESSONS_API_URL = moduleId =>
-  `https://wbdv-generic-server.herokuapp.com/api/jannunzi/modules/${moduleId}/lessons`;
+  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/modules/${moduleId}/lessons`;
 export const LESSONS_TOPICS_API_URL = lessonId =>
-  `https://wbdv-generic-server.herokuapp.com/api/jannunzi/lessons/${lessonId}/topics`;
+  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/lessons/${lessonId}/topics`;
 export const TOPICS_API_URL = topicId =>
-  `https://wbdv-generic-server.herokuapp.com/api/jannunzi/topics/${topicId}`;
-export const WIDGET_API_URL_CUSTOM = widgetId =>
-  `https://wbdv-generic-server.herokuapp.com/api/jannunzi/widgets/${widgetId}`;
+  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/topics/${topicId}`;
+
+
+export const WIDGET_API_URL_GENERIC =
+    "https://wbdv-generic-server.herokuapp.com/api/stefamy4405/widgets";
+export const TOPICS_WIDGETS_API_URL_CUSTOM = topicId =>
+  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/topics/${topicId}/widgets`;
+export const WIDGET_API_URL_ID = widgetId =>
+    `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/widgets/${widgetId}`;

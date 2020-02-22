@@ -6,9 +6,6 @@ export default class ModuleListComponent extends React.Component {
     this.props.findModulesForCourse(this.props.courseId);
   }
 
-  componentDidUpdate() {
-    this.props.findModulesForCourse(this.props.courseId);
-  }
 
   state = {
     activeModuleId: this.props.moduleId,
@@ -16,6 +13,9 @@ export default class ModuleListComponent extends React.Component {
     newModuleTitle: ""
   };
 
+  /**
+   * @param {{_id}} _id
+   */
   render() {
     return (
       <ul className="list-group">
