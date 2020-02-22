@@ -10,6 +10,13 @@ export const createTopic = topic => ({
   topic: topic
 });
 
+export const DELETE_TOPIC = "DELETE_TOPIC";
+export const deleteTopic = topics => ({
+  type: DELETE_TOPIC,
+  topics: topics
+});
+
+
 export const FIND_TOPIC = "FIND_TOPIC";
 export const findTopic = topic => ({
   type: FIND_TOPIC,
@@ -22,8 +29,3 @@ export const updateTopic = topic => ({
   topic: topic
 });
 
-export const DELETE_TOPIC = "DELETE_TOPIC";
-export const deleteTopic = topics => ({
-  type: DELETE_TOPIC,
-  topics: topics
-});

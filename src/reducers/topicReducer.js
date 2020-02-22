@@ -16,6 +16,10 @@ const topicReducer = (state = { topics: [] }, action) => {
       return {
         topics: action.topics
       };
+    case DELETE_TOPIC:
+      return {
+        topics: [...state.topics]
+      };
     case FIND_TOPIC:
       return {
         topic: action.topic
@@ -24,10 +28,7 @@ const topicReducer = (state = { topics: [] }, action) => {
       return {
         topic: action.topic
       };
-    case DELETE_TOPIC:
-      return {
-        topics: [...state.topics]
-      };
+
     default:
       return state;
   }

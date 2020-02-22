@@ -86,6 +86,7 @@ class CourseManagerContainer extends React.Component {
    * @param {{courseId:string}} courseId
    * @param {{moduleId:string}} moduleId
    * @param {{lessonId:string}} lessonId
+   * @param {{topicId:string}} topicId
    */
   render() {
     return (
@@ -160,19 +161,33 @@ class CourseManagerContainer extends React.Component {
               />
             )}
           />
-          {/*<Route*/}
-          {/*  path="/course/:courseId/module/:moduleId/lesson/:lessonId"*/}
-          {/*  exact={true}*/}
-          {/*  render={props => (*/}
-          {/*    <CourseEditorComponent*/}
-          {/*      {...props}*/}
-          {/*      lessonId={props.match.params.lessonId}*/}
-          {/*      moduleId={props.match.params.moduleId}*/}
-          {/*      courseId={props.match.params.courseId}*/}
-          {/*      hideEditor={this.hideEditor}*/}
-          {/*    />*/}
-          {/*  )}*/}
-          {/*/>*/}
+          <Route
+            path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+            exact={true}
+            render={props => (
+              <CourseEditorComponent
+                {...props}
+                moduleId={props.match.params.moduleId}
+                courseId={props.match.params.courseId}
+                lessonId={props.match.params.lessonId}
+                hideEditor={this.hideEditor}
+              />
+            )}
+          />
+          <Route
+              path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+              exact={true}
+              render={props => (
+                  <CourseEditorComponent
+                      {...props}
+                      lessonId={props.match.params.lessonId}
+                      moduleId={props.match.params.moduleId}
+                      courseId={props.match.params.courseId}
+                      topicId={props.match.params.topicId}
+                      hideEditor={this.hideEditor}
+                  />
+              )}
+          />
        </Router>
       </div>
     );

@@ -1,5 +1,6 @@
 import React from "react";
 import LessonTabsContainer from "../../containers/LessonTabsContainer";
+import TopicTabsContainer from "../../containers/TopicTabsContainer";
 import { Link } from "react-router-dom";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
@@ -8,7 +9,7 @@ import lessons from "../../reducers/lessonReducer";
 import topics from "../../reducers/topicReducer";
 import widgets from "../../reducers/widgetReducer";
 import ModuleListContainer from "../../containers/ModuleListContainer";
-import WidgetList from "./WidgetList";
+// import WidgetList from "./WidgetList";
 
 const reducers = combineReducers({
   modules,
@@ -19,8 +20,7 @@ const reducers = combineReducers({
 
 const store = createStore(reducers);
 
-
-const CourseEditorComponent = ({ courseId, moduleId, history }) => (
+const CourseEditorComponent = ({ courseId, moduleId, lessonId, history }) => (
   <Provider store={store}>
     <div>
       <button
@@ -42,9 +42,16 @@ const CourseEditorComponent = ({ courseId, moduleId, history }) => (
           />
         </div>
         <div className="col-9">
-          <LessonTabsContainer history={history} moduleId={moduleId} />
-          {/*<TopicPills/>*/}
-          {/*<WidgetList />*/}
+          <LessonTabsContainer
+              history={history}
+              moduleId={moduleId}
+              courseId={courseId} />
+          <TopicTabsContainer
+              history={history}
+              moduleId={moduleId}
+              courseId={courseId}
+              lessonId={lessonId} />
+                    {/*<WidgetList />*/}
         </div>
       </div>
     </div>

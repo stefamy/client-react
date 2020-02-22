@@ -12,7 +12,7 @@ export const findTopicsForLesson = lessonId =>
  * Creates new topic with the passed information under the passed lesson id.
  */
 export const createTopic = (lessonId, topic) =>
-  fetch(TOPICS_API_URL(lessonId), {
+  fetch(LESSONS_TOPICS_API_URL(lessonId), {
     method: "POST",
     body: JSON.stringify(topic),
     headers: {
@@ -52,7 +52,7 @@ export const deleteTopic = topicId =>
   }).then(response => response.json());
 
 export default {
-  findTopicsForTopic,
+  findTopicsForLesson,
   createTopic,
   findTopic,
   updateTopic,

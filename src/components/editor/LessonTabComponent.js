@@ -12,20 +12,28 @@ export default class LessonTabComponent extends React.Component {
     }
   }
 
+
   state = {
     activeLessonId: this.props.lessonId,
     editingLessonId: "",
     newLessonTitle: "hellooo"
   };
 
+
   render() {
     return (
+        <div>
+
       <ul className="nav nav-tabs">
         {this.props.lessons &&
           this.props.lessons.map(lesson => (
             <LessonTabItem
               key={lesson._id}
               edit={() => {
+                const lessonId = lesson._id;
+                this.props.history.push(
+                    `/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${lessonId}`
+                );
                 this.setState({
                   editingLessonId: lesson._id,
                   newLessonTitle: lesson.title
@@ -37,6 +45,10 @@ export default class LessonTabComponent extends React.Component {
                   activeLessonId: lessonId,
                   newLessonTitle: lesson.title
                 });
+                this.props.history.push(
+                    `/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${lessonId}`
+                );
+
               }}
               onTextEntry={entry => {
                 this.setState({
@@ -44,13 +56,6 @@ export default class LessonTabComponent extends React.Component {
                 });
               }}
               save={() => {
-
-                // const modId = this.props.moduleId;
-                // this.props.createLesson(modId, {
-                //   title: "New Lesson "
-                // });
-                //
-
                 const lessonId = lesson._id;
                 const newTitle = this.state.newLessonTitle;
                 this.setState({
@@ -63,8 +68,6 @@ export default class LessonTabComponent extends React.Component {
                   })
                   .then(() => {
                     this.props.findLessonsForModule(this.props.moduleId);
-                    // console.log('this.state:', this.state);
-                    // console.log('this.props:', this.props);
                   });
               }}
               deleteLesson={() => {
@@ -96,6 +99,8 @@ export default class LessonTabComponent extends React.Component {
           </button>
         </li>
       </ul>
-    );
+
+      </div>
+  );
   }
 }
