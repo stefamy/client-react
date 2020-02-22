@@ -18,10 +18,7 @@ const widgetReducer = (state = { widgets: [] }, action) => {
             return {
                 widgets: [...state.widgets, action.widgets]
             };
-        case FIND_ALL_WIDGETS:
-            return {
-                widgets: [...state.widgets, action.widgets]
-            };
+      
         case FIND_WIDGET:
             return {
                 widgets: [...state.widgets, action.widgets]

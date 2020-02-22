@@ -13,13 +13,6 @@ export const findAllWidgetsForTopic = topicId =>
     fetch(TOPICS_WIDGETS_API_URL_CUSTOM(topicId)).then(response => response.json());
 
 /**
- * FETCH
- * Returns all widgets.
- */
-export const findAllWidgets = () =>
-    fetch(WIDGET_API_URL_GENERIC).then(response => response.json());
-
-/**
  * GET
  * Returns the widget matching the passed widget id.
  */
@@ -65,7 +58,6 @@ export const deleteWidget = widgetId =>
 
 export default {
   findAllWidgetsForTopic,
-  findAllWidgets,
   findWidget,
   createWidget,
   updateWidget,

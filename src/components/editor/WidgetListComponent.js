@@ -3,92 +3,86 @@ import WidgetListItem from "./WidgetListItem";
 
 export default class WidgetListComponent extends React.Component {
   componentDidMount() {
-    // this.props.findModulesForCourse(this.props.courseId);
+    this.props.findAllWidgetsForTopic(this.props.topicId);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.topicId !== prevProps.topicId) {
+      this.props.findAllWidgetsForTopic(this.props.topicId);
+    }
   }
 
 
   state = {
-    activeModuleId: this.props.moduleId,
-    editingModuleId: "",
-    newModuleTitle: ""
+    activeWidgetId: this.props.widgetId,
+    editingWidgetId: "",
+    newWidgetTitle: "hellooo"
   };
 
-  /**
-   * @param {{_id}} _id
-   */
   render() {
     return (
-        <ul className="list-group">
-          {this.props.modules &&
-          this.props.modules.map(module => (
-              <ModuleListItem
-                  key={module._id}
+        <ul className="nav nav-tabs">
+          {this.props.widgets &&
+          this.props.widgets.map(widget => (
+              <WidgetListItem
+                  key={widget._id}
                   edit={() => {
-                    const moduleId = module._id;
-                    this.props.history.push(
-                        `/course/${this.props.courseId}/module/${moduleId}`
-                    );
                     this.setState({
-                      editingModuleId: module._id,
-                      newModuleTitle: module.title
+                      editingWidgetId: widget._id,
+                      newWidgetTitle: widget.title
                     });
                   }}
                   select={() => {
-                    const moduleId = module._id;
-                    this.props.history.push(
-                        `/course/${this.props.courseId}/module/${moduleId}`
-                    );
+                    const widgetId = widget._id;
                     this.setState({
-                      activeModuleId: moduleId,
-                      newModuleTitle: module.title
+                      activeWidgetId: widgetId,
+                      newWidgetTitle: widget.title
                     });
                   }}
                   onTextEntry={entry => {
                     this.setState({
-                      newModuleTitle: entry
+                      newWidgetTitle: entry
                     });
                   }}
                   save={() => {
-                    const moduleId = module._id;
-                    const courseId = this.props.courseId;
-                    const newTitle = this.state.newModuleTitle;
+                    const widgetId = widget._id;
+                    const newTitle = this.state.newWidgetTitle;
                     this.setState({
-                      editingModuleId: "",
-                      activeModuleId: ""
+                      editingWidgetId: "",
+                      activeWidgetId: ""
                     });
                     this.props
-                    .updateModule(moduleId, {
+                    .updateWidget(widgetId, {
                       title: newTitle
                     })
                     .then(() => {
-                      this.props.history.push(
-                          `/course/${courseId}/module/${moduleId}`
-                      );
+                      this.props.findAllWidgetsForTopic(this.props.topicId);
                     });
                   }}
-                  deleteModule={() => {
-                    const moduleId = module._id;
-                    const courseId = this.props.courseId;
+                  deleteWidget={() => {
+                    const widgetId = widget._id;
                     this.setState({
-                      editingModuleId: "",
-                      newModuleTitle: ""
+                      editingWidgetId: "",
+                      newWidgetTitle: ""
                     });
-                    this.props.deleteModule(moduleId).then(() => {
-                      this.props.history.push(`/course/${courseId}`);
+                    this.props.deleteWidget(widgetId).then(() => {
+                      this.props.findAllWidgetsForTopic(this.props.topicId);
                     });
                   }}
-                  editing={module._id === this.state.editingModuleId}
-                  active={module._id === this.state.activeModuleId}
-                  module={module}
+                  editing={widget._id === this.state.editingWidgetId}
+                  active={widget._id === this.state.activeWidgetId}
+                  widget={widget}
               />
           ))}
           <li className="list-group-item">
             <button
-                onClick={() =>
-                    this.props.createModule(this.props.courseId, {
-                      title: "New Module"
-                    })
-                }
+                onClick={() => {
+                  const topicId = this.props.topicId;
+                  this.props.createWidget(topicId, {
+                    title: "New Widget "
+                  });
+
+                }}
             >
               Add
             </button>

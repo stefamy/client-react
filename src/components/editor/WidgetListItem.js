@@ -1,35 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const TopicTabItem = ({
+const WidgetTabItem = ({
   save,
   edit,
   editing,
-  topic,
+  widget,
   active,
-  deleteTopic,
+  deleteWidget,
   select,
   onTextEntry
 }) => (
-    <li onClick={select} className={`nav-item  list-group-item ${active ? "active" : ""}`}>
+    <li onClick={select} className={`nav-item ${active ? "active" : ""}`}>
     <span>
       {editing && active && (
           <span>
           <input
               className="form-control"
               type="text"
-              placeholder="New Topic Title"
+              placeholder="New Widget Title"
               onChange={e => {
                 onTextEntry(e.target.value);
               }}
           ></input>
-          <button onClick={deleteTopic}>Delete</button>
+          <button onClick={deleteWidget}>Delete</button>
           <button onClick={save}>Save</button>
         </span>
       )}
       {(!editing || !active) && (
           <span>
-          {topic.title}
+          {widget.title}
             <button onClick={edit}>Edit</button>
         </span>
       )}
@@ -43,4 +43,4 @@ const dispatchToPropertyMapper = dispatch => ({});
 export default connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper
-)(TopicTabItem);
+)(WidgetTabItem);
