@@ -16,8 +16,10 @@ export const TOPICS_API_URL = topicId =>
 
 
 export const WIDGET_API_URL_GENERIC =
-    "https://wbdv-generic-server.herokuapp.com/api/stefamy4405/widgets";
+    "http://localhost:8080/api/widgets";
 export const TOPICS_WIDGETS_API_URL_CUSTOM = topicId =>
-  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/topics/${topicId}/widgets`;
+  `http://localhost:8080/api/topics/${topicId}/widgets`;
 export const WIDGET_API_URL_ID = widgetId =>
-    `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/widgets/${widgetId}`;
+    `http://localhost:8080/api/widgets/${widgetId}`;
+
+

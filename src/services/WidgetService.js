@@ -16,17 +16,27 @@ export const findAllWidgetsForTopic = topicId =>
  * GET
  * Returns the widget matching the passed widget id.
  */
+export const findAllWidgets = () =>
+    fetch(WIDGET_API_URL_GENERIC, {
+      method: "GET"
+    }).then(response => response.json());
+
+/**
+ * GET
+ * Returns the widget matching the passed widget id.
+ */
 export const findWidget = topicId =>
     fetch(TOPICS_WIDGETS_API_URL_CUSTOM(topicId), {
       method: "GET"
     }).then(response => response.json());
+
 
 /**
  * POST
  * Creates new widget with the passed information under the passed topic id.
  */
 export const createWidget = (topicId, widget) =>
-    fetch(WIDGET_API_URL_ID(topicId), {
+    fetch(TOPICS_WIDGETS_API_URL_CUSTOM(topicId), {
       method: "POST",
       body: JSON.stringify(widget),
       headers: {
@@ -59,6 +69,7 @@ export const deleteWidget = widgetId =>
 export default {
   findAllWidgetsForTopic,
   findWidget,
+  findAllWidgets,
   createWidget,
   updateWidget,
   deleteWidget

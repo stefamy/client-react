@@ -11,7 +11,7 @@ const WidgetTabItem = ({
   select,
   onTextEntry
 }) => (
-    <li onClick={select} className={`nav-item ${active ? "active" : ""}`}>
+    <li onClick={select} className={`nav-item list-group-item ${active ? "active" : ""}`}>
     <span>
       {editing && active && (
           <span>

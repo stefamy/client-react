@@ -87,6 +87,7 @@ class CourseManagerContainer extends React.Component {
    * @param {{moduleId:string}} moduleId
    * @param {{lessonId:string}} lessonId
    * @param {{topicId:string}} topicId
+   * @param {{widgetId:string}} widgetId
    */
   render() {
     return (

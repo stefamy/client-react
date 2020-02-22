@@ -1,22 +1,23 @@
 import React from "react";
 import WidgetListItem from "./WidgetListItem";
+import makeId from '../../common/helpers';
 
 export default class WidgetListComponent extends React.Component {
   componentDidMount() {
-    this.props.findAllWidgetsForTopic(this.props.topicId);
+    this.props.findAllWidgets();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.topicId !== prevProps.topicId) {
-      this.props.findAllWidgetsForTopic(this.props.topicId);
+      this.props.findAllWidgets();
     }
   }
 
 
   state = {
-    activeWidgetId: this.props.widgetId,
+    activeWidgetId: '',
     editingWidgetId: "",
-    newWidgetTitle: "hellooo"
+    newWidgetTitle: "New Widget Added!"
   };
 
   render() {
@@ -25,7 +26,7 @@ export default class WidgetListComponent extends React.Component {
           {this.props.widgets &&
           this.props.widgets.map(widget => (
               <WidgetListItem
-                  key={widget._id}
+                  key={makeId(10)}
                   edit={() => {
                     this.setState({
                       editingWidgetId: widget._id,
@@ -79,7 +80,7 @@ export default class WidgetListComponent extends React.Component {
                 onClick={() => {
                   const topicId = this.props.topicId;
                   this.props.createWidget(topicId, {
-                    title: "New Widget "
+                    title: "New Widget"
                   });
 
                 }}

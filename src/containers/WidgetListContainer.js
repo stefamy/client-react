@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import service from "../services/WidgetService";
 import {
   findAllWidgetsForTopic,
+  findAllWidgets,
   createWidget,
   deleteWidget,
   findWidget,
@@ -22,6 +23,10 @@ const dispatchToPropertyMapper = dispatch => ({
       service
       .findAllWidgetsForTopic(topicId)
       .then(widgets => dispatch(findAllWidgetsForTopic(widgets))),
+  findAllWidgets: () =>
+      service
+      .findAllWidgets()
+      .then(widgets => dispatch(findAllWidgets(widgets))),
   deleteWidget: widgetId =>
       service
       .deleteWidget(widgetId)

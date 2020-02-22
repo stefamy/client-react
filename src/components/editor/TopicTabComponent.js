@@ -27,6 +27,10 @@ export default class TopicTabComponent extends React.Component {
               <TopicTabItem
                   key={topic._id}
                   edit={() => {
+                    const topicId = topic._id;
+                    this.props.history.push(
+                        `/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topicId}`
+                    );
                     this.setState({
                       editingTopicId: topic._id,
                       newTopicTitle: topic.title
@@ -38,6 +42,9 @@ export default class TopicTabComponent extends React.Component {
                       activeTopicId: topicId,
                       newTopicTitle: topic.title
                     });
+                    this.props.history.push(
+                        `/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topicId}`
+                    );
                   }}
                   onTextEntry={entry => {
                     this.setState({
