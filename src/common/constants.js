@@ -16,10 +16,10 @@ export const TOPICS_API_URL = topicId =>
 
 
 export const WIDGET_API_URL_GENERIC =
-    "http://localhost:8080/api/widgets";
+    "https://fast-dawn-88684.herokuapp.com/api/widgets";
 export const TOPICS_WIDGETS_API_URL_CUSTOM = topicId =>
-  `http://localhost:8080/api/topics/${topicId}/widgets`;
+  `https://fast-dawn-88684.herokuapp.com/api/topics/${topicId}/widgets`;
 export const WIDGET_API_URL_ID = widgetId =>
-    `http://localhost:8080/api/widgets/${widgetId}`;
+    `https://fast-dawn-88684.herokuapp.com/api/widgets/${widgetId}`;
 
 
