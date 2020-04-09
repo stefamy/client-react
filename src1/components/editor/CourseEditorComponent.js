@@ -36,9 +36,9 @@ const CourseEditorComponent = ({ courseId, moduleId, lessonId, topicId, history 
       <div className="row">
         <div className="col-3">
           <ModuleListContainer
-            moduleId={moduleId}
             history={history}
             courseId={courseId}
+            moduleId={moduleId}
           />
         </div>
         <div className="col-9">

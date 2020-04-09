@@ -1,45 +1,73 @@
-import {
-    FIND_ALL_WIDGETS_FOR_TOPIC,
-    FIND_ALL_WIDGETS,
-    FIND_WIDGET,
-    CREATE_WIDGET,
-    DELETE_LESSON,
-    UPDATE_WIDGET
-} from "../actions/widgetActions";
+import _ from 'lodash';
+import { FIND_ALL_WIDGETS, CREATE_WIDGET, DELETE_WIDGET, UPDATE_WIDGET, UPDATE_TEXT, UPDATE_SIZE, UPDATE_NAME } from "../constants/TopicConstants";
 
+const initialState = {
+    widgets: []
+}
 
-const widgetReducer = (state = { widgets: [] }, action) => {
+const widgetsReducer = (state = initialState, action) => {
+    let widgets, indexToUpdate;
     switch (action.type) {
-        case CREATE_WIDGET:
-            return {
-                widgets: [...state.widgets, action.widget]
-            };
-        case FIND_ALL_WIDGETS_FOR_TOPIC:
-            return {
-                widgets: [...state.widgets]
-            };
-
         case FIND_ALL_WIDGETS:
+            widgets = _.sortBy(action.widgets, 'order')
             return {
-                widgets: [...state.widgets]
-            };
-        case FIND_WIDGET:
-            return {
-                widgets: [...state.widgets, action.widgets]
-            };
+                widgets: widgets
+            }
 
-        case DELETE_LESSON:
+        case CREATE_WIDGET:
+            widgets = [...state.widgets];
+            widgets.push(action.widget);
+
             return {
-                widgets: [...state.widgets, action.widgets]
-            };
+                widgets: widgets
+            }
+
+        case DELETE_WIDGET:
+            widgets = [...state.widgets];
+            _.remove(widgets, { _id: action.widgetId })
+
+            return {
+                widgets: widgets
+            }
+
         case UPDATE_WIDGET:
-            return {
-                widget: action.widget
-            };
+            widgets = [...state.widgets];
+            indexToUpdate = _.findIndex(widgets, { _id: action.widget._id });
+            widgets.splice(indexToUpdate, 1, action.widget);
 
+            return {
+                widgets: _.cloneDeep(widgets)
+            }
+
+        case UPDATE_TEXT:
+            widgets = [...state.widgets];
+            indexToUpdate = _.findIndex(widgets, { _id: action.widgetId });
+            widgets[indexToUpdate].text = action.text;
+
+            return {
+                widgets: _.cloneDeep(widgets)
+            }
+
+        case UPDATE_SIZE:
+            widgets = [...state.widgets];
+            indexToUpdate = _.findIndex(widgets, { _id: action.widgetId });
+            widgets[indexToUpdate].size = action.size;
+
+            return {
+                widgets: _.cloneDeep(widgets)
+            }
+
+        case UPDATE_NAME:
+            widgets = [...state.widgets];
+            indexToUpdate = _.findIndex(widgets, { _id: action.widgetId });
+            widgets[indexToUpdate].name = action.name;
+
+            return {
+                widgets: _.cloneDeep(widgets)
+            }
         default:
             return state
     }
 }
 
-export default widgetReducer
+export default widgetsReducer;

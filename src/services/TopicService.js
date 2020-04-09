@@ -1,60 +1,64 @@
-import { LESSONS_TOPICS_API_URL, TOPICS_API_URL } from "../common/constants";
+import { API_URL } from "../constants/app-constants";
 
-/**
- * FETCH
- * Returns topics belonging to specific lesson id.
- */
-export const findTopicsForLesson = lessonId =>
-  fetch(LESSONS_TOPICS_API_URL(lessonId)).then(response => response.json());
+export const createTopic = async (topicId, topic) => {
+    const response = await fetch(`${API_URL}/topics/${topicId}/topics`, {
+        method: "POST",
+        body: JSON.stringify(topic),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 
-/**
- * POST
- * Creates new topic with the passed information under the passed lesson id.
- */
-export const createTopic = (lessonId, topic) =>
-  fetch(LESSONS_TOPICS_API_URL(lessonId), {
-    method: "POST",
-    body: JSON.stringify(topic),
-    headers: {
-      "content-type": "application/json"
-    }
-  }).then(response => response.json());
+    return await response.json()
+}
 
-/**
- * GET
- * Returns the lesson matching the passed topic id.
- */
-export const findTopic = topicId =>
-  fetch(TOPICS_API_URL(topicId), {
-    method: "GET"
-  }).then(response => response.json());
+export const findTopicsForLesson = async (topicId) => {
+    const response = await fetch(`${API_URL}/topics/${topicId}/topics`, {
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 
-/**
- * UPDATE
- * Updates the topic matching the passed id with the topic content provided.
- */
-export const updateTopic = (topicId, topic) =>
-  fetch(TOPICS_API_URL(topicId), {
-    method: "PUT",
-    body: JSON.stringify(topic),
-    headers: {
-      "content-type": "application/json"
-    }
-  }).then(response => response.json());
+    return await response.json()
+}
 
-/**
- * DELETE
- * Deletes the topic matching the passed id.
- */
-export const deleteTopic = topicId =>
-  fetch(TOPICS_API_URL(topicId), {
-    method: "DELETE"
-  }).then(response => response.json());
+export const findTopicById = async (topicId) => {
+    const response = await fetch(`${API_URL}/topics/${topicId}`, {
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
+
+export const updateTopic = async (topicId, topic) => {
+    const response = await fetch(`${API_URL}/topics/${topicId}`, {
+        method: 'PUT',
+        body: JSON.stringify(topic),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
+
+export const deleteTopic = async (topicId) => {
+    const response = await fetch(`${API_URL}/topics/${topicId}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
 
 export default {
-  findTopicsForLesson,
-  createTopic,
-  findTopic,
-  updateTopic,
-  deleteTopic
-};
+    createTopic,
+    findTopicsForLesson,
+    findTopicById,
+    updateTopic,
+    deleteTopic
+}

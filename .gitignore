@@ -1,3 +1,5 @@
 node_modules/
 package-lock.json
 .DS_STORE
+.idea/
+wbdv-sp-20-astefani-final-project-client/.idea/

@@ -1,60 +1,64 @@
-import { LESSONS_API_URL, MODULES_LESSONS_API_URL } from "../common/constants";
+import { API_URL } from "../constants/app-constants";
 
-/**
- * FETCH
- * Returns lessons belonging to specific module id.
- */
-export const findLessonsForModule = moduleId =>
-  fetch(MODULES_LESSONS_API_URL(moduleId)).then(response => response.json());
+export const createLesson = async (moduleId, lesson) => {
+    const response = await fetch(`${API_URL}/modules/${moduleId}/lessons`, {
+        method: "POST",
+        body: JSON.stringify(lesson),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 
-/**
- * POST
- * Creates new lesson with the passed information under the passed module id.
- */
-export const createLesson = (moduleId, lesson) =>
-  fetch(MODULES_LESSONS_API_URL(moduleId), {
-    method: "POST",
-    body: JSON.stringify(lesson),
-    headers: {
-      "content-type": "application/json"
-    }
-  }).then(response => response.json());
+    return await response.json()
+}
 
-/**
- * GET
- * Returns the lesson matching the passed lesson id.
- */
-export const findLesson = lessonId =>
-  fetch(LESSONS_API_URL(lessonId), {
-    method: "GET"
-  }).then(response => response.json());
+export const findLessonsForModule = async (moduleId) => {
+    const response = await fetch(`${API_URL}/modules/${moduleId}/lessons`, {
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 
-/**
- * UPDATE
- * Updates the lesson matching the passed id with the lesson content provided.
- */
-export const updateLesson = (lessonId, lesson) =>
-  fetch(LESSONS_API_URL(lessonId), {
-    method: "PUT",
-    body: JSON.stringify(lesson),
-    headers: {
-      "content-type": "application/json"
-    }
-  }).then(response => response.json());
+    return await response.json()
+}
 
-/**
- * DELETE
- * Deletes the lesson matching the passed id.
- */
-export const deleteLesson = lessonId =>
-  fetch(LESSONS_API_URL(lessonId), {
-    method: "DELETE"
-  }).then(response => response.json());
+export const findLessonById = async (lessonId) => {
+    const response = await fetch(`${API_URL}/lessons/${lessonId}`, {
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
+
+export const updateLesson = async (lessonId, lesson) => {
+    const response = await fetch(`${API_URL}/lessons/${lessonId}`, {
+        method: 'PUT',
+        body: JSON.stringify(lesson),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
+
+export const deleteLesson = async (lessonId) => {
+    const response = await fetch(`${API_URL}/lessons/${lessonId}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
 
 export default {
-  findLessonsForModule,
-  createLesson,
-  findLesson,
-  updateLesson,
-  deleteLesson
-};
+    createLesson,
+    findLessonsForModule,
+    findLessonById,
+    updateLesson,
+    deleteLesson
+}

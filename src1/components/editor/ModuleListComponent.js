@@ -5,7 +5,11 @@ export default class ModuleListComponent extends React.Component {
   componentDidMount() {
     this.props.findModulesForCourse(this.props.courseId);
   }
-
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.courseId !== prevProps.courseId) {
+      this.props.findModulesForCourse(this.props.courseId);
+    }
+  }
 
   state = {
     activeModuleId: this.props.moduleId,

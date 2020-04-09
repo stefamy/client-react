@@ -1,60 +1,64 @@
-import { MODULE_API_URL, COURSES_MODULES_API_URL } from "../common/constants";
+import { API_URL } from "../constants/app-constants";
 
-/**
- * FETCH
- * Returns modules belonging to specific course id.
- */
-export const findModulesForCourse = courseId =>
-  fetch(COURSES_MODULES_API_URL(courseId)).then(response => response.json());
+export const createModule = async (courseId, module) => {
+    const response = await fetch(`${API_URL}/courses/${courseId}/modules`, {
+        method: "POST",
+        body: JSON.stringify(module),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 
-/**
- * POST
- * Creates new module with the passed information under the passed course id.
- */
-export const createModule = (courseId, module) =>
-  fetch(COURSES_MODULES_API_URL(courseId), {
-    method: "POST",
-    body: JSON.stringify(module),
-    headers: {
-      "content-type": "application/json"
-    }
-  }).then(response => response.json());
+    return await response.json()
+}
 
-/**
- * GET
- * Returns the module matching the passed module id.
- */
-export const findModule = moduleId =>
-  fetch(MODULE_API_URL(moduleId), {
-    method: "GET"
-  }).then(response => response.json());
+export const findModulesForCourse = async (courseId) => {
+    const response = await fetch(`${API_URL}/courses/${courseId}/modules`, {
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
 
-/**
- * UPDATE
- * Updates the module matching the passed id with the module content provided.
- */
-export const updateModule = (moduleId, module) =>
-  fetch(MODULE_API_URL(moduleId), {
-    method: "PUT",
-    body: JSON.stringify(module),
-    headers: {
-      "content-type": "application/json"
-    }
-  }).then(response => response.json());
+    return await response.json()
+}
 
-/**
- * DELETE
- * Deletes the module matching the passed id.
- */
-export const deleteModule = moduleId =>
-  fetch(MODULE_API_URL(moduleId), {
-    method: "DELETE"
-  }).then(response => response.json());
+export const findModuleById = async (moduleId) => {
+    const response = await fetch(`${API_URL}/modules/${moduleId}`, {
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
+
+export const updateModule = async (moduleId, module) => {
+    const response = await fetch(`${API_URL}/modules/${moduleId}`, {
+        method: 'PUT',
+        body: JSON.stringify(module),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
+
+export const deleteModule = async (moduleId) => {
+    const response = await fetch(`${API_URL}/modules/${moduleId}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+
+    return await response.json();
+}
 
 export default {
-  findModulesForCourse,
-  createModule,
-  findModule,
-  updateModule,
-  deleteModule
-};
+    createModule,
+    findModulesForCourse,
+    findModuleById,
+    updateModule,
+    deleteModule
+}

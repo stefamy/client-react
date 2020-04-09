@@ -1,5 +1,6 @@
 export const COURSES_API_URL =
   "https://wbdv-generic-server.herokuapp.com/api/stefamy4405/courses";
+
 export const LESSONS_API_URL = lessonId =>
  `https://wbdv-generic-server.herokuapp.com/api/stefamy4405/lessons/${lessonId}`;
 export const MODULE_API_URL = moduleId =>
