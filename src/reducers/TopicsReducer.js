@@ -24,7 +24,11 @@ const topicsReducer = (state = initialState, action) => {
 
         case DELETE_TOPIC:
             topics = [...state.topics];
-            _.remove(topics, {_id: action.topicId})
+            _.remove(topics, {id: action.topicId})
+
+            return {
+                topics: [...state.topics]
+            };
 
             return {
                 topics: topics
@@ -32,7 +36,7 @@ const topicsReducer = (state = initialState, action) => {
             
         case UPDATE_TOPIC:
             topics = [...state.topics];
-            const indexToUpdate = _.findIndex(topics, {_id: action.topic._id});
+            const indexToUpdate = _.findIndex(topics, {id: action.topic._id});
             topics.splice(indexToUpdate, 1, action.topic);
             
             return {

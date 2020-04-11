@@ -12,11 +12,13 @@ class TopicListComponent extends Component {
 
   componentDidMount() {
     this.props.findTopicsForLesson(this.props.selectedLessonID);
+
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.selectedLessonID !== this.props.selectedLessonID) {
       this.props.findTopicsForLesson(this.props.selectedLessonID);
+      console.log(this.props);
     }
   }
 
@@ -39,15 +41,16 @@ class TopicListComponent extends Component {
         <div className="mt-3">
           {this.props.topics &&
             this.props.topics.map(topic => (
-              <TopicListItemComponent
-                key={topic._id}
-                topic={topic}
-                history={this.props.history}
-                courseId={this.props.courseId}
-                selectedLessonID={this.props.selectedLessonID}
-                selectedModuleID={this.props.selectedModuleID}
-                selectedTopicID={this.props.selectedTopicID}
-              />
+                <TopicListItemComponent
+              key={topic.id}
+              topicID={topic._id}
+              topic={topic}
+              history={this.props.history}
+              courseId={this.props.courseId}
+              selectedLessonID={this.props.selectedLessonID}
+              selectedModuleID={this.props.selectedModuleID}
+              selectedTopicID={this.props.selectedTopicID}
+          />
             ))}
           {!this.state.showAddTopicInput && (
             <i

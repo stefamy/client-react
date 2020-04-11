@@ -12,7 +12,7 @@ class TopicListItemComponent extends Component {
 
   componentDidMount() {
     this.setState({
-      isSelected: this.props.topic._id === this.props.selectedTopicID
+      isSelected: this.props.topic.id == this.props.selectedTopicID
     });
   }
 
@@ -23,24 +23,26 @@ class TopicListItemComponent extends Component {
 
     if (
       this.state.isSelected !==
-      (this.props.topic._id === this.props.selectedTopicID)
+      (this.props.topic.id == this.props.selectedTopicID)
     ) {
       this.setState({
-        isSelected: this.props.topic._id === this.props.selectedTopicID
+        isSelected: this.props.topic.id == this.props.selectedTopicID
       });
     }
+    console.log(this.props);
+    console.log(this.state);
   }
 
   setSelectedIdToRoute = () => {
     this.props.history.push(
-      `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.topic._id}`
+      `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.topic.id}`
     );
   };
 
   deleteTopicClicked = e => {
     e.stopPropagation();
-    this.props.deleteTopic(this.props.topic._id);
-    if (this.props.topic._id === this.props.selectedTopicID) {
+    this.props.deleteTopic(this.props.topic.id);
+    if (this.props.topic.id == this.props.selectedTopicID) {
       this.props.history.push(
         `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}`
       );
@@ -132,7 +134,7 @@ const dispatchToPropertyMapper = dispatch => {
     },
 
     updateTopic: topic => {
-      topicsService.updateTopic(topic._id, topic).then(() => {
+      topicsService.updateTopic(topic.id, topic).then(() => {
         dispatch(topicActions.updateTopic(topic));
       });
     }
