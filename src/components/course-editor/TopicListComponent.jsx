@@ -38,7 +38,7 @@ class TopicListComponent extends Component {
   render() {
     return (
       <div className="row">
-        <div className="mt-3">
+        <div className="mt-3 flex-div">
           {this.props.topics &&
             this.props.topics.map(topic => (
                 <TopicListItemComponent
