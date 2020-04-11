@@ -12,7 +12,7 @@ class TopicListItemComponent extends Component {
 
   componentDidMount() {
     this.setState({
-      isSelected: this.props.topic.id == this.props.selectedTopicID
+      isSelected: this.props.topic.id === parseInt(this.props.selectedTopicID)
     });
   }
 
@@ -23,13 +23,13 @@ class TopicListItemComponent extends Component {
 
     if (
       this.state.isSelected !==
-      (this.props.topic.id == this.props.selectedTopicID)
+      (this.props.topic.id === parseInt(this.props.selectedTopicID))
     ) {
       this.setState({
-        isSelected: this.props.topic.id == this.props.selectedTopicID
+        isSelected: this.props.topic.id === parseInt(this.props.selectedTopicID)
       });
     }
-  }
+ }
 
   setSelectedIdToRoute = () => {
     this.props.history.push(
@@ -40,7 +40,7 @@ class TopicListItemComponent extends Component {
   deleteTopicClicked = e => {
     e.stopPropagation();
     this.props.deleteTopic(this.props.topic.id);
-    if (this.props.topic.id == this.props.selectedTopicID) {
+    if (this.props.topic.id === parseInt(this.props.selectedTopicID)) {
       this.props.history.push(
         `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}`
       );

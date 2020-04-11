@@ -12,24 +12,21 @@ class WidgetListItemComponent extends Component {
 
   componentDidMount() {
     this.setState({
-      isSelected: this.props.widget.id == this.props.selectedWidgetID
+      isSelected: this.props.widget.id === parseInt(this.props.selectedWidgetID)
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('this.props', this.props);
-
-    console.log('this.state', this.state);
     if (prevState.isSelected !== this.state.isSelected) {
       this.setState({ isEditEnabled: false });
     }
 
     if (
       this.state.isSelected !==
-      (this.props.widget.id == this.props.selectedWidgetID)
+      (this.props.widget.id === parseInt(this.props.selectedWidgetID))
     ) {
       this.setState({
-        isSelected: this.props.widget.id == this.props.selectedWidgetID
+        isSelected: this.props.widget.id === parseInt(this.props.selectedWidgetID)
       });
     }
   }
@@ -43,7 +40,7 @@ class WidgetListItemComponent extends Component {
   deleteWidgetClicked = e => {
     e.stopPropagation();
     this.props.deleteWidget(this.props.widget.id);
-    if (this.props.widget.id == this.props.selectedWidgetID) {
+    if (this.props.widget.id === parseInt(this.props.selectedWidgetID)) {
       this.props.history.push(
         `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.selectedTopicID}`
       );

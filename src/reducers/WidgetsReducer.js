@@ -58,15 +58,6 @@ const widgetsReducer = (state = initialState, action) => {
             }
 
         case UPDATE_NAME:
-            //
-            // topics = [...state.topics];
-            // const indexToUpdate = _.findIndex(topics, {id: action.topic.id});
-            // topics.splice(indexToUpdate, 1, action.topic);
-            //
-            // return {
-            //     topics: _.cloneDeep(topics)
-            // }
-            //
             widgets = [...state.widgets];
             indexToUpdate = _.findIndex(widgets, { id: action.widgetId });
             widgets[indexToUpdate].name = action.name;

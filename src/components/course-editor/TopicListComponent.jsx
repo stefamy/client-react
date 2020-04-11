@@ -42,7 +42,7 @@ class TopicListComponent extends Component {
             this.props.topics.map(topic => (
                 <TopicListItemComponent
               key={topic.id}
-              topicID={topic._id}
+              topicID={topic.id}
               topic={topic}
               history={this.props.history}
               courseId={this.props.courseId}
