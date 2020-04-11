@@ -8,7 +8,8 @@ class WidgetListComponent extends Component {
   state = {
     newWidgets: [],
     updatedWidgets: [],
-    deletedWidgetIds: []
+    deletedWidgetIds: [],
+    tempId: 'A'
   };
 
   resetState() {
@@ -30,18 +31,13 @@ class WidgetListComponent extends Component {
   }
 
   addNewWidget = () => {
-    const lastWidget = this.props.widgets && this.props.widgets.length > 0 ? this.props.widgets[this.props.widgets.length - 1] : null;
-
-    const id = lastWidget ? lastWidget.id + 1 : 0; // TODO: id creation for multiple changes within session
-    const orderWidget = lastWidget ? lastWidget.orderWidget + 1 : 0;
-
     const widget = {
-      id: id, // Increment
-      orderWidget: orderWidget, // Increment
-      type: 'HEADING', // Default
-      size: 1 // Default
+      type: 'HEADING',
+      size: 1,
+      tempId: this.state.tempId
     };
 
+    this.setState({tempId: widget.tempId += '0'});
     this.handleNewWidget(widget);
   };
 
@@ -70,10 +66,15 @@ class WidgetListComponent extends Component {
   }
 
 
-  handleRemoveWidget = (id) => {
-    this.props.removeWidget(id);
-    const deletedWidgetIdArr = [...this.state.deletedWidgetIds, id];
-    this.setState({deletedWidgetIds: deletedWidgetIdArr});
+  handleRemoveWidget = (widget) => {
+    if (widget.id) {
+      this.props.removeWidget(widget.id);
+      const deletedWidgetIdArr = [...this.state.deletedWidgetIds, widget.id];
+      this.setState({deletedWidgetIds: deletedWidgetIdArr});
+    } else {
+      this.props.removeWidget(widget.tempId);
+    }
+
   }
 
   render() {
@@ -90,9 +91,8 @@ class WidgetListComponent extends Component {
             this.props.widgets.map((widget, index) => (
                 <WidgetListItemComponent
                 key={index}
-                widgetID={widget.id}
                 widget={widget}
-                removeWidget={() => this.handleRemoveWidget(widget.id)}
+                removeWidget={this.handleRemoveWidget}
                 updateWidget={this.handleUpdateWidget}
             />
             ))}

@@ -25,6 +25,7 @@ const widgetsReducer = (state = initialState, action) => {
         case DELETE_WIDGET:
             widgets = [...state.widgets];
             _.remove(widgets, { id: action.widgetId })
+            _.remove(widgets, { tempId: action.widgetId })
 
             return {
                 widgets: widgets

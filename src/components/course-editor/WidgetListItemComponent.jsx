@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import HeadingWidget from "./widgets/HeadingWidgetComponent";
 import ListWidgetComponent from "./widgets/ListWidgetComponent";
 import ImageWidgetComponent from "./widgets/ImageWidgetComponent";
-import { connect } from "react-redux";
 import ParagraphWidgetComponent from "./widgets/ParagraphWidgetComponent";
 
 class WidgetListItemComponent extends Component {
@@ -10,58 +9,49 @@ class WidgetListItemComponent extends Component {
   state = {
     name: this.props.widget.name,
     text: this.props.widget.text,
-    size: this.props.widget.size || "1",
+    size: this.props.widget.size,
     src: this.props.widget.src,
     value: this.props.widget.value,
     isUpdated: false
   };
 
 
-  handleNameChange = newName => {
-    this.setState({ name: newName });
-    this.props.widget.name = newName;
+  handleUpdate = () => {
     if (!this.state.isUpdated) {
       this.props.updateWidget(this.props.widget, true);
     }
     this.setState({isUpdated: true})
+  }
+
+  handleNameChange = newName => {
+    this.setState({ name: newName });
+    this.props.widget.name = newName;
+    this.handleUpdate();
   };
 
   handleSrcChange = newSrc => {
     this.setState({ src: newSrc });
     this.props.widget.src = newSrc;
-    if (!this.state.isUpdated) {
-      this.props.updateWidget(this.props.widget, true);
-    }
-    this.setState({isUpdated: true})
+    this.handleUpdate();
   };
 
   handleValueChange = newValue => {
     this.setState({ value: newValue });
     this.props.widget.value = newValue;
-    if (!this.state.isUpdated) {
-      this.props.updateWidget(this.props.widget, true);
-    }
-    this.setState({isUpdated: true})
+    this.handleUpdate();
   };
 
   handleTextChange = newText => {
     this.setState({ text: newText });
     this.props.widget.text = newText;
-    if (!this.state.isUpdated) {
-      this.props.updateWidget(this.props.widget, true);
-    }
-    this.setState({isUpdated: true})
+    this.handleUpdate();
   };
 
   handleSizeChange = (newSize) => {
     this.setState({ size: newSize });
     this.props.widget.size = newSize;
-    if (!this.state.isUpdated) {
-      this.props.updateWidget(this.props.widget, true);
-    }
-    this.setState({isUpdated: true})
+    this.handleUpdate();
   };
-
 
   handleTypeChange = newType => {
     this.setState({ type: newType });
@@ -73,7 +63,7 @@ class WidgetListItemComponent extends Component {
   render() {
     return (
       <>
-        <div className={`widget row mb-3 order-` + this.props.widget.orderWidget}>
+        <div className="widget row mb-3">
           <div className="col-12">
             <div className="card">
               <div className="card-body">
@@ -96,7 +86,7 @@ class WidgetListItemComponent extends Component {
                       <option value="IMAGE">Image Widget</option>
                     </select>
                     <button className="btn btn-danger">
-                      <i className="fa fa-trash" onClick={this.props.removeWidget}></i>
+                      <i className="fa fa-trash" onClick={() => this.props.removeWidget(this.props.widget)}></i>
                     </button>
                   </div>
                 </div>
@@ -147,23 +137,4 @@ class WidgetListItemComponent extends Component {
     );
   }
 }
-
-const stateToPropertyMapper = state => {
-  return {
-    widgets: state.widgets.widgets
-
-  };
-};
-
-const dispatchToPropertyMapper = dispatch => {
-  return {
-  //   removeWidget: widgetID => {
-  //     dispatch(widgetActions.deleteWidget(widgetID));
-  //   }
-   };
-};
-
-export default connect(
-  stateToPropertyMapper,
-  dispatchToPropertyMapper
-)(WidgetListItemComponent);
+export default WidgetListItemComponent;

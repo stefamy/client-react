@@ -8,7 +8,6 @@ export const createWidget = async (topicId, widget) => {
       'content-type': 'application/json'
     }
   })
-  console.log('widget updating:', widget, topicId);
   return await response.json()
 }
 
