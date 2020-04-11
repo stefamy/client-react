@@ -6,7 +6,7 @@ const initialState = {
 }
 
 const widgetsReducer = (state = initialState, action) => {
-    let widgets, indexToUpdate;
+    let widgets, indexToUpdate
     switch (action.type) {
         case FIND_ALL_WIDGETS:
             widgets = _.sortBy(action.widgets, 'orderWidget')
@@ -38,6 +38,7 @@ const widgetsReducer = (state = initialState, action) => {
             return {
                 widgets: _.cloneDeep(widgets)
             }
+
 
         case UPDATE_TEXT:
             widgets = [...state.widgets];

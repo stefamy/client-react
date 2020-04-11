@@ -11,6 +11,14 @@ class WidgetListComponent extends Component {
     deletedWidgetIds: []
   };
 
+  resetState() {
+    this.setState({
+      newWidgets: [],
+      updatedWidgets: [],
+      deletedWidgetIds: []
+    })
+  }
+
   componentDidMount() {
     this.props.findWidgetsForTopic(this.props.selectedTopicID);
   }
@@ -22,12 +30,16 @@ class WidgetListComponent extends Component {
   }
 
   addNewWidget = () => {
-    const id = this.props.widgets && this.props.widgets.length > 0 ?
-        this.props.widgets[this.props.widgets.length - 1].id + 1 : 0; // TODO: id creation for multiple changes within session
+    const lastWidget = this.props.widgets && this.props.widgets.length > 0 ? this.props.widgets[this.props.widgets.length - 1] : null;
+
+    const id = lastWidget ? lastWidget.id + 1 : 0; // TODO: id creation for multiple changes within session
+    const orderWidget = lastWidget ? lastWidget.orderWidget + 1 : 0;
+
     const widget = {
-      id: id,
-      type: 'HEADING',
-      size: 1
+      id: id, // Increment
+      orderWidget: orderWidget, // Increment
+      type: 'HEADING', // Default
+      size: 1 // Default
     };
 
     this.handleNewWidget(widget);
@@ -35,8 +47,9 @@ class WidgetListComponent extends Component {
 
   saveWidgets = () => {
     this.state.newWidgets.forEach(widget => widgetsService.createWidget(this.props.selectedTopicID, widget));
-    this.state.updatedWidgets.forEach(widget => widgetsService.updateWidget(widget.id, widget)); // TODO: LEFTOFF: not updating on save
+    this.state.updatedWidgets.forEach(widget => widgetsService.updateWidget(widget.id, widget))
     this.state.deletedWidgetIds.forEach(id => widgetsService.deleteWidget(id));
+    this.resetState();
   };
 
   handleNewWidget = (widget) => {
@@ -53,8 +66,9 @@ class WidgetListComponent extends Component {
     }
 
     updatedWidgetsArr.push(widget);
-    this.setState({updatedWidgets: updatedWidgetsArr});
+    this.setState({updatedWidgets: [...updatedWidgetsArr]});
   }
+
 
   handleRemoveWidget = (id) => {
     this.props.removeWidget(id);
@@ -71,16 +85,18 @@ class WidgetListComponent extends Component {
            <button className="btn btn-success" onClick={() => this.saveWidgets(this.props)}>Save</button>
           </div>
           }
+          <div className="widget-list d-flex flex-column">
           {this.props.widgets &&
-            this.props.widgets.map(widget => (
+            this.props.widgets.map((widget, index) => (
                 <WidgetListItemComponent
-                key={widget.id}
+                key={index}
                 widgetID={widget.id}
                 widget={widget}
                 removeWidget={() => this.handleRemoveWidget(widget.id)}
                 updateWidget={this.handleUpdateWidget}
             />
             ))}
+        </div>
         </div>
         <div className="col-12 text-right">
           <button className="btn-danger btn-lg fab">
@@ -109,20 +125,16 @@ const dispatchToPropertyMapper = dispatch => {
     },
 
     createWidget: (widget) => {
-      // widgetsService.createWidget(topicId, widget).then(newWidget => {
         dispatch(widgetActions.createWidget(widget));
-      // });
     },
 
     deleteWidget: widgetID => {
       widgetsService.deleteWidget(widgetID).then(() => {
-        // dispatch(widgetActions.deleteWidget(widgetID));
       });
     },
 
     updateWidget: widget => {
       widgetsService.updateWidget(widget.id, widget).then(() => {
-        // dispatch(widgetActions.updateWidget(widget));
       });
     },
 

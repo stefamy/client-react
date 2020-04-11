@@ -38,6 +38,8 @@ export const updateName = (widgetId, name) => ({
     name: name
 })
 
+
+
 export default {
     createWidget,
     findAllWidgets,

@@ -8,7 +8,7 @@ export const createWidget = async (topicId, widget) => {
       'content-type': 'application/json'
     }
   })
-
+  console.log('widget updating:', widget, topicId);
   return await response.json()
 }
 
@@ -33,7 +33,6 @@ export const findWidgetById = async (widgetId) => {
 }
 
 export const updateWidget = async (widgetId, widget) => {
-  console.log('updating widget:', widget);
   const response = await fetch(`${LOCAL_API_URL}/widgets/${widgetId}`, {
     method: 'PUT',
     body: JSON.stringify(widget),

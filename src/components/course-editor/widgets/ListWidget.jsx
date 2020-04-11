@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import '../../../styles/Widgets.css';
-import HeadingPreview from "./HeadingPreview";
+import ListPreview from "./ListPreview";
 
-class HeadingWidgetComponent extends Component {
+class ListWidget extends Component {
 
   render() {
     return (
@@ -11,18 +11,14 @@ class HeadingWidgetComponent extends Component {
           <div className="col-12">
                 <div className="row my-2">
                     <div className="col-12">
-                        <input type="text" className="form-control"  onChange={(e) => this.props.handleTextChange(e.target.value)}  placeholder={this.props.previewText || "Widget Text"}/>
+                        <textarea type="text" className="form-control"  onChange={(e) => this.props.handleTextChange(e.target.value)}  placeholder={this.props.previewText || "Enter one list item per line."}/>
                     </div>
                 </div>
                 <div className="row my-2">
                     <div className="col-12">
-                    <select className="form-control" onChange={(e) => this.props.handleSizeChange(e.target.value)} defaultValue={this.props.textSize || "1"}>
-                      <option value="1">Heading 1</option>
-                      <option value="2">Heading 2</option>
-                      <option value="3">Heading 3</option>
-                      <option value="4">Heading 4</option>
-                      <option value="5">Heading 5</option>
-                      <option value="6">Heading 6</option>
+                    <select className="form-control" onChange={(e) => this.props.handleValueChange(e.target.value)} defaultValue={this.props.valueText || "ul"}>
+                      <option value="ul">Unordered List</option>
+                      <option value="ol">Ordered List</option>
                     </select>
                     </div>
                 </div>
@@ -34,7 +30,7 @@ class HeadingWidgetComponent extends Component {
                 <div className="row">
                   <div className="col-12 my-2">
                     <h4>Preview</h4>
-                    <HeadingPreview text={this.props.previewText} size={this.props.textSize}/>
+                    <ListPreview text={this.props.previewText} value={this.props.valueText}/>
                   </div>
                 </div>
               </div>
@@ -44,4 +40,4 @@ class HeadingWidgetComponent extends Component {
   }
 }
 
-export default HeadingWidgetComponent;
+export default ListWidget;
