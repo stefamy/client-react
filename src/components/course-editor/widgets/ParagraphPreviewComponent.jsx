@@ -1,6 +1,6 @@
 import React from "react";
 
-const ParagraphPreview = ({ text }) => {
+const ParagraphPreviewComponent = ({ text }) => {
   return (
     <>
       {text && <p>{text}</p>}
@@ -8,4 +8,4 @@ const ParagraphPreview = ({ text }) => {
   );
 };
 
-export default ParagraphPreview;
+export default ParagraphPreviewComponent;

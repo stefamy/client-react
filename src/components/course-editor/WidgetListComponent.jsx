@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import WidgetListItemComponent from "./WidgetListItemComponent";
 import widgetsService from "../../services/WidgetService";
 import widgetActions from "../../actions/WidgetActions";
-import {connect, Provider} from "react-redux";
+import {connect} from "react-redux";
 
 class WidgetListComponent extends Component {
   state = {

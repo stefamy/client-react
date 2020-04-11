@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import HeadingWidget from "./widgets/HeadingWidget";
-import ListWidget from "./widgets/ListWidget";
-import ImageWidget from "./widgets/ImageWidget";
+import HeadingWidget from "./widgets/HeadingWidgetComponent";
+import ListWidgetComponent from "./widgets/ListWidgetComponent";
+import ImageWidgetComponent from "./widgets/ImageWidgetComponent";
 import { connect } from "react-redux";
-import ParagraphWidget from "./widgets/ParagraphWidget";
+import ParagraphWidgetComponent from "./widgets/ParagraphWidgetComponent";
 
 class WidgetListItemComponent extends Component {
 
   state = {
-    name: this.props.widget.name || "Unnamed Widget",
-    text: this.props.widget.text || "",
+    name: this.props.widget.name,
+    text: this.props.widget.text,
     size: this.props.widget.size || "1",
-    src: this.props.widget.src || "",
-    value: this.props.widget.value || "",
+    src: this.props.widget.src,
+    value: this.props.widget.value,
     isUpdated: false
   };
 
@@ -103,38 +103,38 @@ class WidgetListItemComponent extends Component {
                 <div className="widget-body">
                   {this.props.widget.type === "HEADING" &&
                   <HeadingWidget
-                      widget={this.props.widget}
                       handleNameChange={this.handleNameChange}
                       handleTextChange={this.handleTextChange}
                       handleSizeChange={this.handleSizeChange}
                       previewText={this.state.text}
                       textSize={this.state.size}
-                    />
+                      name={this.state.name}
+                  />
                   }
                   {this.props.widget.type === "PARAGRAPH" &&
-                  <ParagraphWidget
-                      widget={this.props.widget}
+                  <ParagraphWidgetComponent
                       handleNameChange={this.handleNameChange}
                       handleTextChange={this.handleTextChange}
                       previewText={this.state.text}
+                      name={this.state.name}
                   />                  }
                   {this.props.widget.type === "LIST" &&
-                  <ListWidget
-                      widget={this.props.widget}
+                  <ListWidgetComponent
                       handleNameChange={this.handleNameChange}
                       handleTextChange={this.handleTextChange}
                       handleValueChange={this.handleValueChange}
                       previewText={this.state.text}
                       valueText={this.state.value}
+                      name={this.state.name}
                   />
                   }
                   {this.props.widget.type === "IMAGE" &&
-                  <ImageWidget
-                      widget={this.props.widget}
+                  <ImageWidgetComponent
                       handleNameChange={this.handleNameChange}
                       handleSrcChange={this.handleSrcChange}
                       previewText={this.state.text}
                       srcText={this.state.src}
+                      name={this.state.name}
                   />
                   }
                 </div>

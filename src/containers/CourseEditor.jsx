@@ -9,7 +9,6 @@ import topicReducer from "../reducers/TopicsReducer";
 import widgetReducer from "../reducers/WidgetsReducer";
 import LessonListComponent from "../components/course-editor/LessonListComponent";
 import TopicListComponent from "../components/course-editor/TopicListComponent";
-// import HeadingWidgetComponent from "../components/course-editor/widgets/HeadingWidget";
 import WidgetListComponent from "../components/course-editor/WidgetListComponent";
 import "../styles/CourseEditor.css";
 

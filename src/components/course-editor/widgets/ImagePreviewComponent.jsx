@@ -1,6 +1,6 @@
 import React from "react";
 
-const ImagePreview = ({ src, width, height }) => {
+const ImagePreviewComponent = ({ src, width, height }) => {
   return (
     <>
       {src &&
@@ -18,4 +18,4 @@ const ImagePreview = ({ src, width, height }) => {
   );
 };
 
-export default ImagePreview;
+export default ImagePreviewComponent;

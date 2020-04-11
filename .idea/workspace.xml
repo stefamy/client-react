@@ -5,12 +5,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/course-editor/WidgetListComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/WidgetListComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreview.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidget.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidget.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/WidgetConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/WidgetConstants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/WidgetsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/WidgetsReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/WidgetService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/WidgetService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/Widgets.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/Widgets.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreviewComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidget.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidgetComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreviewComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidget.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidgetComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/ListPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/ListPreviewComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/ListWidget.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/ListWidgetComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphPreviewComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidget.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidgetComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/CourseEditor.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/CourseEditor.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,28 +27,95 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreview.jsx">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="343">
+              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+                <marker date="1586638999636" expanded="true" signature="5547:5548" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidgetComponent.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/WidgetListComponent.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListPreviewComponent.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreviewComponent.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListWidgetComponent.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="359">
+              <caret line="24" column="151" selection-start-line="24" selection-start-column="151" selection-end-line="24" selection-end-column="151" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidgetComponent.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="16" column="151" selection-start-line="16" selection-start-column="151" selection-end-line="16" selection-end-column="151" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/styles/Widgets.css">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidgetComponent.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state relative-caret-position="390">
+              <caret line="28" column="151" selection-start-line="28" selection-start-column="151" selection-end-line="28" selection-end-column="151" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidget.jsx">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/ModuleListComponent.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+            <state relative-caret-position="135">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -54,74 +124,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListWidget.jsx">
+        <entry file="file://$PROJECT_DIR$/src/components/course-editor/LessonListComponent.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="14" lean-forward="true" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-                <marker date="1586637778680" expanded="true" signature="5513:5514" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreview.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidget.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphPreview.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListPreview.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidget.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            <state relative-caret-position="423">
+              <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="53" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -182,14 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/reducers/moduleReducer.js" />
-        <option value="$PROJECT_DIR$/src/reducers/lessonReducer.js" />
-        <option value="$PROJECT_DIR$/src/actions/topicActions.js" />
-        <option value="$PROJECT_DIR$/src/reducers/topicReducer.js" />
-        <option value="$PROJECT_DIR$/src/containers/LessonTabsContainer.js" />
-        <option value="$PROJECT_DIR$/src/components/courseEditor/CourseEditorComponent.js" />
-        <option value="$PROJECT_DIR$/src/components/editor/LessonTabItem.js" />
-        <option value="$PROJECT_DIR$/src/containers/TopicTabsContainer.js" />
         <option value="$PROJECT_DIR$/src/components/editor/LessonTabComponent.js" />
         <option value="$PROJECT_DIR$/src/components/editor/TopicTabItem.js" />
         <option value="$PROJECT_DIR$/src/components/editor/WidgetListItem.js" />
@@ -217,22 +215,30 @@
         <option value="$PROJECT_DIR$/src/styles/CourseEditor.css" />
         <option value="$PROJECT_DIR$/src/components/course-editor/TopicListItemComponent.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/ModuleListComponent.jsx" />
-        <option value="$PROJECT_DIR$/src/containers/CourseEditor.jsx" />
         <option value="$PROJECT_DIR$/src/services/WidgetService.js" />
         <option value="$PROJECT_DIR$/src/reducers/WidgetsReducer.js" />
         <option value="$PROJECT_DIR$/src/actions/WidgetActions.js" />
         <option value="$PROJECT_DIR$/src/constants/WidgetConstants.js" />
-        <option value="$PROJECT_DIR$/src/components/course-editor/WidgetListComponent.jsx" />
-        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreview.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreview.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ListWidget.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidget.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidget.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphPreview.jsx" />
-        <option value="$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidget.jsx" />
         <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ListPreview.jsx" />
         <option value="$PROJECT_DIR$/src/styles/Widgets.css" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreview.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreviewComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreviewComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphPreviewComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ListPreviewComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/containers/CourseEditor.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/WidgetListComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidgetComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ListWidgetComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidgetComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidgetComponent.jsx" />
       </list>
     </option>
   </component>
@@ -404,12 +410,12 @@
       <workItem from="1586538150996" duration="737000" />
       <workItem from="1586539034821" duration="2639000" />
       <workItem from="1586559970495" duration="28506000" />
-      <workItem from="1586625601557" duration="12431000" />
+      <workItem from="1586625601557" duration="13360000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80556000" />
+    <option name="totallyTimeSpent" value="81485000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -501,61 +507,15 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidget.jsx</url>
-          <line>21</line>
+          <url>file://$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx</url>
+          <line>98</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidget.jsx</url>
-          <line>17</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="41" />
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/ModuleListItemComponent.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="89" column="25" lean-forward="true" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CourseCard.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="75" lean-forward="true" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/TopicListComponent.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/TopicsReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -647,36 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/ModuleListComponent.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/WidgetListComponent.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="94" column="26" lean-forward="true" selection-start-line="94" selection-start-column="26" selection-end-line="94" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/LessonListComponent.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="41" column="30" lean-forward="true" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/course-editor/LessonListItemComponent.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -732,17 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/CourseEditor.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#756#838#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/styles/CourseEditor.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -783,34 +702,98 @@
     <entry file="file://$PROJECT_DIR$/public/img/icons/addimage.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreview.jsx">
+    <entry file="file://$PROJECT_DIR$/src/styles/Widgets.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/constants/ModuleConstants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="45" lean-forward="true" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/constants/app-constants.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/TopicActions.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/CourseEditor.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreview.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidget.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidget.jsx">
+    <entry file="file://$PROJECT_DIR$/src/components/CourseCard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphPreviewComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="3" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/HeadingPreviewComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListPreviewComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImagePreviewComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/ModuleListComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/LessonListComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/WidgetListComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -819,53 +802,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/course-editor/WidgetListItemComponent.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        <state relative-caret-position="343">
+          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <marker date="1586637778680" expanded="true" signature="5513:5514" ph="..." />
+            <marker date="1586638999636" expanded="true" signature="5547:5548" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidget.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphPreview.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListWidget.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="14" lean-forward="true" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListPreview.jsx">
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ParagraphWidgetComponent.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/styles/Widgets.css">
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ListWidgetComponent.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="359">
+          <caret line="24" column="151" selection-start-line="24" selection-start-column="151" selection-end-line="24" selection-end-column="151" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/ImageWidgetComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="151" selection-start-line="16" selection-start-column="151" selection-end-line="16" selection-end-column="151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/course-editor/widgets/HeadingWidgetComponent.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" column="151" selection-start-line="28" selection-start-column="151" selection-end-line="28" selection-end-column="151" />
         </state>
       </provider>
     </entry>
