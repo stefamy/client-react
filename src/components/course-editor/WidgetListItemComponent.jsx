@@ -1,57 +1,60 @@
 import React, { Component } from "react";
-import topicsService from "../../services/TopicService";
-import topicActions from "../../actions/TopicActions";
+import widgetsService from "../../services/WidgetService";
+import widgetActions from "../../actions/WidgetActions";
 import { connect } from "react-redux";
 
-class TopicListItemComponent extends Component {
+class WidgetListItemComponent extends Component {
   state = {
     isSelected: false,
     isEditEnabled: false,
-    newTopicTitle: ""
+    newWidgetName: ""
   };
 
   componentDidMount() {
     this.setState({
-      isSelected: this.props.topic.id == this.props.selectedTopicID
+      isSelected: this.props.widget.id == this.props.selectedWidgetID
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('this.props', this.props);
+
+    console.log('this.state', this.state);
     if (prevState.isSelected !== this.state.isSelected) {
       this.setState({ isEditEnabled: false });
     }
 
     if (
       this.state.isSelected !==
-      (this.props.topic.id == this.props.selectedTopicID)
+      (this.props.widget.id == this.props.selectedWidgetID)
     ) {
       this.setState({
-        isSelected: this.props.topic.id == this.props.selectedTopicID
+        isSelected: this.props.widget.id == this.props.selectedWidgetID
       });
     }
   }
 
   setSelectedIdToRoute = () => {
     this.props.history.push(
-      `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.topic.id}`
+      `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.selectedTopicID}/widget/${this.props.widget.id}`
     );
   };
 
-  deleteTopicClicked = e => {
+  deleteWidgetClicked = e => {
     e.stopPropagation();
-    this.props.deleteTopic(this.props.topic.id);
-    if (this.props.topic.id == this.props.selectedTopicID) {
+    this.props.deleteWidget(this.props.widget.id);
+    if (this.props.widget.id == this.props.selectedWidgetID) {
       this.props.history.push(
-        `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}`
+        `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.selectedTopicID}`
       );
     }
   };
 
-  updateTopicClicked = e => {
+  updateWidgetClicked = e => {
     e.stopPropagation();
-    const topic = { ...this.props.topic };
-    topic.title = this.state.newTopicTitle;
-    this.props.updateTopic(topic);
+    const widget = { ...this.props.widget };
+    widget.name = this.state.newWidgetName;
+    this.props.updateWidget(widget);
     this.setState({ isEditEnabled: false });
   };
 
@@ -60,8 +63,8 @@ class TopicListItemComponent extends Component {
     this.setState({ isEditEnabled: true });
   };
 
-  handleTitleChange = e => {
-    this.setState({ newTopicTitle: e.target.value });
+  handleNameChange = e => {
+    this.setState({ newWidgetName: e.target.value });
   };
 
   render() {
@@ -74,7 +77,7 @@ class TopicListItemComponent extends Component {
             }`}
             onClick={this.setSelectedIdToRoute}
           >
-            <span className="mx-1">{this.props.topic.title}</span>
+            <span className="mx-1">{this.props.widget.name}</span>
             {this.state.isSelected && (
               <>
                 <i
@@ -83,7 +86,7 @@ class TopicListItemComponent extends Component {
                 ></i>
                 <i
                   className="fa fa-trash text-danger mx-1"
-                  onClick={this.deleteTopicClicked}
+                  onClick={this.deleteWidgetClicked}
                 ></i>
               </>
             )}
@@ -94,13 +97,13 @@ class TopicListItemComponent extends Component {
             <div className="col-6">
               <input
                 type="text"
-                placeholder="New Topic Title"
+                placeholder="New Widget Name"
                 className="form-control ml-3"
-                onChange={this.handleTitleChange}
+                onChange={this.handleNameChange}
               />
             </div>
             <div className="col-6">
-              <button className="btn btn-sm" onClick={this.updateTopicClicked}>
+              <button className="btn btn-sm" onClick={this.updateWidgetClicked}>
                 <i className="fa fa-2x fa-check text-success"></i>
               </button>
               <button
@@ -119,21 +122,21 @@ class TopicListItemComponent extends Component {
 
 const stateToPropertyMapper = state => {
   return {
-    topics: state.topics.topics
+    widgets: state.widgets.widgets
   };
 };
 
 const dispatchToPropertyMapper = dispatch => {
   return {
-    deleteTopic: topicID => {
-      topicsService.deleteTopic(topicID).then(() => {
-        dispatch(topicActions.deleteTopic(topicID));
+    deleteWidget: widgetID => {
+      widgetsService.deleteWidget(widgetID).then(() => {
+        dispatch(widgetActions.deleteWidget(widgetID));
       });
     },
 
-    updateTopic: topic => {
-      topicsService.updateTopic(topic.id, topic).then(() => {
-        dispatch(topicActions.updateTopic(topic));
+    updateWidget: widget => {
+      widgetsService.updateWidget(widget.id, widget).then(() => {
+        dispatch(widgetActions.updateWidget(widget));
       });
     }
   };
@@ -142,4 +145,4 @@ const dispatchToPropertyMapper = dispatch => {
 export default connect(
   stateToPropertyMapper,
   dispatchToPropertyMapper
-)(TopicListItemComponent);
+)(WidgetListItemComponent);

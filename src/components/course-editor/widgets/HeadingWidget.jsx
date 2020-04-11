@@ -3,7 +3,7 @@ import '../../../styles/Widgets.css';
 import HeadingPreview from "./HeadingPreview";
 
 class HeadingWidgetComponent extends Component {
-  handleTextChange = e => {};
+  handleTextChange = e => {console.log(e.target.value)};
 
   handleNameChange = e => {};
 

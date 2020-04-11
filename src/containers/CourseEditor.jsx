@@ -6,9 +6,11 @@ import ModuleListComponent from "../components/course-editor/ModuleListComponent
 import moduleReducer from "../reducers/ModulesReducer";
 import lessonReducer from "../reducers/LessonsReducer";
 import topicReducer from "../reducers/TopicsReducer";
+import widgetReducer from "../reducers/WidgetsReducer";
 import LessonListComponent from "../components/course-editor/LessonListComponent";
 import TopicListComponent from "../components/course-editor/TopicListComponent";
-import HeadingWidgetComponent from "../components/course-editor/widgets/HeadingWidget";
+// import HeadingWidgetComponent from "../components/course-editor/widgets/HeadingWidget";
+import WidgetListComponent from "../components/course-editor/WidgetListComponent";
 import "../styles/CourseEditor.css";
 
 class CourseEditor extends Component {
@@ -27,7 +29,8 @@ class CourseEditor extends Component {
   rootReducer = combineReducers({
     modules: moduleReducer,
     lessons: lessonReducer,
-    topics: topicReducer
+    topics: topicReducer,
+    widgets: widgetReducer
   });
 
   store = createStore(this.rootReducer);
@@ -102,18 +105,19 @@ class CourseEditor extends Component {
                 </>
               )}
               {this.props.selectedModuleID &&
-                this.props.selectedLessonID &&
-                this.props.selectedTopicID && (
+              this.props.selectedLessonID &&
+              this.props.selectedTopicID && (
                   <>
-                    <HeadingWidgetComponent
-                      widget={{
-                        text: "Heading 1",
-                        size: 1,
-                        name: "Heading Widget"
-                      }}
+                    <WidgetListComponent
+                        history={this.props.history}
+                        courseId={this.props.courseId}
+                        selectedModuleID={this.props.selectedModuleID}
+                        selectedLessonID={this.props.selectedLessonID}
+                        selectedTopicID={this.props.selectedTopicID}
+                        selectedWidgetID={this.props.selectedWidgetID}
                     />
                   </>
-                )}
+              )}
             </div>
           </div>
         </div>

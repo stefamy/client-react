@@ -18,7 +18,6 @@ class TopicListComponent extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.selectedLessonID !== this.props.selectedLessonID) {
       this.props.findTopicsForLesson(this.props.selectedLessonID);
-      console.log(this.props);
     }
   }
 

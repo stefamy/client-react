@@ -73,7 +73,7 @@ class CourseManager extends Component {
 
     createCourse({
       title: courseTitle,
-      owner: "Jainam Sheth",
+      owner: "Amy Stefani",
       lastModified: moment()
     }).then(newCourse => {
       let courses = [...this.state.courses];

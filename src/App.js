@@ -46,6 +46,18 @@ class App extends Component {
               selectedTopicID={props.match.params.selectedTopicID}
               courseId={props.match.params.courseId} />
           } />
+        <Route path="/course-editor/:courseId/module/:selectedModuleID/lesson/:selectedLessonID/topic/:selectedTopicID/widget/:selectedWidgetID"
+            exact={true}
+               render={(props) =>
+                   <CourseEditor
+                       {...props}
+                       history={props.history}
+                       selectedLessonID={props.match.params.selectedLessonID}
+                       selectedModuleID={props.match.params.selectedModuleID}
+                       selectedTopicID={props.match.params.selectedTopicID}
+                       selectedWidgetID={props.match.params.selectedWidgetID}
+                       courseId={props.match.params.courseId} />
+               } />
         <Route path="/course-manager"
           exact={true}
           render={(props) =>

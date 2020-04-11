@@ -1,4 +1,3 @@
-import { API_URL } from "../constants/app-constants";
 import { LOCAL_API_URL } from "../constants/app-constants";
 
 export const createTopic = async (lessonId, topic) => {
