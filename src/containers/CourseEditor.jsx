@@ -61,7 +61,8 @@ class CourseEditor extends Component {
               </ul>
             )}
           </nav>
-          <div className="row">
+          <div className="container-fluid">
+            <div className="row">
             <div className="col-3 module-list bg-light">
               <ul className="navbar-nav">
                 {this.state.course && (
@@ -73,7 +74,7 @@ class CourseEditor extends Component {
                 )}
               </ul>
             </div>
-            <div className="col-9">
+            <div className="col-9 d-flex flex-column">
               {this.props.selectedModuleID && this.props.selectedLessonID && (
                 <>
                   <TopicListComponent
@@ -83,7 +84,6 @@ class CourseEditor extends Component {
                     selectedLessonID={this.props.selectedLessonID}
                     selectedTopicID={this.props.selectedTopicID}
                   />
-                  <hr />
                 </>
               )}
               {(!this.props.selectedModuleID ||
@@ -121,9 +121,7 @@ class CourseEditor extends Component {
             </div>
           </div>
         </div>
-        <button className="btn-danger btn-lg fab">
-          <i className="fa fa-plus"></i>
-        </button>
+        </div>
       </Provider>
     );
   }

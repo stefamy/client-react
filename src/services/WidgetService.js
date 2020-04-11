@@ -33,6 +33,7 @@ export const findWidgetById = async (widgetId) => {
 }
 
 export const updateWidget = async (widgetId, widget) => {
+  console.log('updating widget:', widget);
   const response = await fetch(`${LOCAL_API_URL}/widgets/${widgetId}`, {
     method: 'PUT',
     body: JSON.stringify(widget),

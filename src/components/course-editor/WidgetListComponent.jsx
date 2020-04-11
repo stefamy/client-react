@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import WidgetListItemComponent from "./WidgetListItemComponent";
 import widgetsService from "../../services/WidgetService";
 import widgetActions from "../../actions/WidgetActions";
-import { connect } from "react-redux";
+import {connect, Provider} from "react-redux";
 
 class WidgetListComponent extends Component {
   state = {
-    showAddWidgetInput: false,
-    newWidgetName: ""
+    newWidgets: [],
+    updatedWidgets: [],
+    deletedWidgetIds: []
   };
 
   componentDidMount() {
     this.props.findWidgetsForTopic(this.props.selectedTopicID);
-
   }
 
   componentDidUpdate(prevProps) {
@@ -21,67 +21,74 @@ class WidgetListComponent extends Component {
     }
   }
 
-  handleWidgetNameChange = e => {
-    this.setState({ newWidgetName: e.target.value });
-  };
-
-  submitNewWidget = () => {
-    const widgetToCreate = {
-      name: this.state.newWidgetName
+  addNewWidget = () => {
+    const id = this.props.widgets && this.props.widgets.length > 0 ?
+        this.props.widgets[this.props.widgets.length - 1].id + 1 : 0; // TODO: id creation for multiple changes within session
+    const widget = {
+      id: id,
+      type: 'HEADING',
+      size: 1
     };
 
-    this.props.createWidget(this.props.selectedTopicID, widgetToCreate);
-    this.setState({ showAddWidgetInput: false });
+    this.handleNewWidget(widget);
   };
+
+  saveWidgets = () => {
+    this.state.newWidgets.forEach(widget => widgetsService.createWidget(this.props.selectedTopicID, widget));
+    this.state.updatedWidgets.forEach(widget => widgetsService.updateWidget(widget.id, widget)); // TODO: LEFTOFF: not updating on save
+    this.state.deletedWidgetIds.forEach(id => widgetsService.deleteWidget(id));
+  };
+
+  handleNewWidget = (widget) => {
+    this.props.createWidget(widget);
+    const newWidgetsArr = [...this.state.newWidgets, widget];
+    this.setState({newWidgets: newWidgetsArr});
+  }
+
+  handleUpdateWidget = (widget, removeOld) => {
+    let updatedWidgetsArr = this.state.updatedWidgets.length > 0 ? [...this.state.updatedWidgets] : [];
+
+    if (removeOld) {
+      updatedWidgetsArr = updatedWidgetsArr.filter(w => w.id !== widget.id);
+    }
+
+    updatedWidgetsArr.push(widget);
+    this.setState({updatedWidgets: updatedWidgetsArr});
+  }
+
+  handleRemoveWidget = (id) => {
+    this.props.removeWidget(id);
+    const deletedWidgetIdArr = [...this.state.deletedWidgetIds, id];
+    this.setState({deletedWidgetIds: deletedWidgetIdArr});
+  }
 
   render() {
     return (
-      <div className="row">
-        <div className="mt-3 flex-div">
+      <div className="row flex-grow-1">
+        <div className="col-12">
+          {this.props.widgets &&
+          <div className="mb-3 text-right">
+           <button className="btn btn-success" onClick={() => this.saveWidgets(this.props)}>Save</button>
+          </div>
+          }
           {this.props.widgets &&
             this.props.widgets.map(widget => (
                 <WidgetListItemComponent
                 key={widget.id}
                 widgetID={widget.id}
                 widget={widget}
-                history={this.props.history}
-                courseId={this.props.courseId}
-                selectedModuleID={this.props.selectedModuleID}
-                selectedLessonID={this.props.selectedLessonID}
-                selectedTopicID={this.props.selectedTopicID}
-                selectedWidgetID={this.props.selectedWidgetID}
+                removeWidget={() => this.handleRemoveWidget(widget.id)}
+                updateWidget={this.handleUpdateWidget}
             />
             ))}
-          {!this.state.showAddWidgetInput && (
-            <i
-              className="fa fa-2x fa-plus pointer align-middle ml-3"
-              onClick={() => this.setState({ showAddWidgetInput: true })}
-            ></i>
-          )}
         </div>
-        {this.state.showAddWidgetInput && (
-          <div className="row mt-3">
-            <div className="col-8 col-md-6">
-              <input
-                type="text"
-                placeholder="New Widget Name"
-                className="form-control ml-3"
-                onChange={this.handleWidgetNameChange}
-              />
-            </div>
-            <div className="col-4">
-              <button className="btn btn-sm" onClick={this.submitNewWidget}>
-                <i className="fa fa-2x fa-check text-success"></i>
-              </button>
-              <button
-                className="btn btn-sm"
-                onClick={() => this.setState({ showAddWidgetInput: false })}
-              >
-                <i className="fa fa-2x fa-times text-danger"></i>
-              </button>
-            </div>
-          </div>
-        )}
+        <div className="col-12 text-right">
+          <button className="btn-danger btn-lg fab">
+            <i className="fa fa-plus"
+               onClick={() => this.addNewWidget()}
+            ></i>
+          </button>
+        </div>
       </div>
     );
   }
@@ -101,11 +108,28 @@ const dispatchToPropertyMapper = dispatch => {
       });
     },
 
-    createWidget: (topicId, widget) => {
-      widgetsService.createWidget(topicId, widget).then(newWidget => {
-        dispatch(widgetActions.createWidget(newWidget));
+    createWidget: (widget) => {
+      // widgetsService.createWidget(topicId, widget).then(newWidget => {
+        dispatch(widgetActions.createWidget(widget));
+      // });
+    },
+
+    deleteWidget: widgetID => {
+      widgetsService.deleteWidget(widgetID).then(() => {
+        // dispatch(widgetActions.deleteWidget(widgetID));
       });
+    },
+
+    updateWidget: widget => {
+      widgetsService.updateWidget(widget.id, widget).then(() => {
+        // dispatch(widgetActions.updateWidget(widget));
+      });
+    },
+
+    removeWidget: widgetID => {
+      dispatch(widgetActions.deleteWidget(widgetID));
     }
+
   };
 };
 

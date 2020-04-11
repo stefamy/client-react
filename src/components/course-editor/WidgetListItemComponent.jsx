@@ -4,114 +4,80 @@ import widgetActions from "../../actions/WidgetActions";
 import { connect } from "react-redux";
 
 class WidgetListItemComponent extends Component {
+
   state = {
-    isSelected: false,
-    isEditEnabled: false,
-    newWidgetName: ""
+    name: this.props.widget.name || "Unnamed Widget",
+    isUpdated: false
   };
 
   componentDidMount() {
-    this.setState({
-      isSelected: this.props.widget.id === parseInt(this.props.selectedWidgetID)
-    });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.isSelected !== this.state.isSelected) {
-      this.setState({ isEditEnabled: false });
-    }
 
-    if (
-      this.state.isSelected !==
-      (this.props.widget.id === parseInt(this.props.selectedWidgetID))
-    ) {
-      this.setState({
-        isSelected: this.props.widget.id === parseInt(this.props.selectedWidgetID)
-      });
-    }
   }
 
-  setSelectedIdToRoute = () => {
-    this.props.history.push(
-      `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.selectedTopicID}/widget/${this.props.widget.id}`
-    );
+  // updateWidget = () => {
+  //   this.setState({ changeToSave: 'UPDATE' })
+  // }
+
+  handleNameChange = newName => {
+    this.setState({ name: newName });
+    this.props.widget.name = newName;
+    this.props.updateWidget(this.props.widget, this.state.isUpdated);
+    this.setState({isUpdated: true})
   };
 
-  deleteWidgetClicked = e => {
+  handleOrderChange = (e, offset) => {
     e.stopPropagation();
-    this.props.deleteWidget(this.props.widget.id);
-    if (this.props.widget.id === parseInt(this.props.selectedWidgetID)) {
-      this.props.history.push(
-        `/course-editor/${this.props.courseId}/module/${this.props.selectedModuleID}/lesson/${this.props.selectedLessonID}/topic/${this.props.selectedTopicID}`
-      );
-    }
-  };
+    // this.props.widget.orderWidget = newName;
+    this.setState({ orderWidget: this.props.widget.orderWidget ? this.props.widget.orderWidget + offset : offset});
+}
 
-  updateWidgetClicked = e => {
-    e.stopPropagation();
-    const widget = { ...this.props.widget };
-    widget.name = this.state.newWidgetName;
-    this.props.updateWidget(widget);
-    this.setState({ isEditEnabled: false });
-  };
-
-  enableEditMode = e => {
-    e.stopPropagation();
-    this.setState({ isEditEnabled: true });
-  };
-
-  handleNameChange = e => {
-    this.setState({ newWidgetName: e.target.value });
+  handleTypeChange = newType => {
+    this.setState({ type: newType });
+    this.props.widget.type = newType;
+    this.props.updateWidget(this.props.widget, this.state.isUpdated);
+    this.setState({isUpdated: true})
   };
 
   render() {
     return (
       <>
-        {!this.state.isEditEnabled && (
-          <button
-            className={`btn mx-2 ${
-              this.state.isSelected ? "btn-dark" : "btn-outline-dark"
-            }`}
-            onClick={this.setSelectedIdToRoute}
-          >
-            <span className="mx-1">{this.props.widget.name}</span>
-            {this.state.isSelected && (
-              <>
-                <i
-                  className="fa fa-pencil text-info mx-1"
-                  onClick={this.enableEditMode}
-                ></i>
-                <i
-                  className="fa fa-trash text-danger mx-1"
-                  onClick={this.deleteWidgetClicked}
-                ></i>
-              </>
-            )}
-          </button>
-        )}
-        {this.state.isEditEnabled && (
-          <div className="row my-2">
-            <div className="col-6">
-              <input
-                type="text"
-                placeholder="New Widget Name"
-                className="form-control ml-3"
-                onChange={this.handleNameChange}
-              />
-            </div>
-            <div className="col-6">
-              <button className="btn btn-sm" onClick={this.updateWidgetClicked}>
-                <i className="fa fa-2x fa-check text-success"></i>
-              </button>
-              <button
-                className="btn btn-sm"
-                onClick={() => this.setState({ isEditEnabled: false })}
-              >
-                <i className="fa fa-2x fa-times text-danger"></i>
-              </button>
+        <div className="row mb-3">
+          <div className="col-12">
+            <div className="card">
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-6">
+                    <h2>{this.state.name || "Unnamed Widget"}</h2>
+                  </div>
+                  <div className="col-6 d-flex justify-content-end align-items-stretch">
+
+                    <button className="btn btn-warning mr-1" onClick={(e) => this.handleOrderChange(e, -1)} >
+                      <i className="fa fa-arrow-up"></i>
+                    </button>
+                    <button className="btn btn-warning mr-1" onClick={(e) => this.handleOrderChange(e, 1)} >
+                      <i className="fa fa-arrow-down"></i>
+                    </button>
+                    <select className="widget-type-select mr-1" onChange={(e) => this.handleTypeChange(e.target.value)} defaultValue={this.props.widget.type || "HEADING"}>
+                      <option value="HEADING">Heading Widget</option>
+                      <option value="PARAGRAPH">Paragraph Widget</option>
+                      <option value="LIST">List Widget</option>
+                      <option value="IMAGE">Image Widget</option>
+
+                    </select>
+                    <input type="text" onChange={(e) => this.handleNameChange(e.target.value)} placeholder={this.props.widget.name || "Widget name"} />
+                    <button className="btn btn-danger">
+                      <i className="fa fa-trash" onClick={this.props.removeWidget}></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        )}
+        </div>
+
       </>
     );
   }
@@ -120,23 +86,16 @@ class WidgetListItemComponent extends Component {
 const stateToPropertyMapper = state => {
   return {
     widgets: state.widgets.widgets
+
   };
 };
 
 const dispatchToPropertyMapper = dispatch => {
   return {
-    deleteWidget: widgetID => {
-      widgetsService.deleteWidget(widgetID).then(() => {
-        dispatch(widgetActions.deleteWidget(widgetID));
-      });
-    },
-
-    updateWidget: widget => {
-      widgetsService.updateWidget(widget.id, widget).then(() => {
-        dispatch(widgetActions.updateWidget(widget));
-      });
-    }
-  };
+  //   removeWidget: widgetID => {
+  //     dispatch(widgetActions.deleteWidget(widgetID));
+  //   }
+   };
 };
 
 export default connect(

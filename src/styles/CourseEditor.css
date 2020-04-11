@@ -23,3 +23,9 @@
     -ms-flex-pack: start;
     justify-content: flex-start;
 }
+
+
+button.special-add {
+    float: right;
+    border-radius: 50%;
+}
