@@ -16,7 +16,8 @@ class WidgetListComponent extends Component {
     this.setState({
       newWidgets: [],
       updatedWidgets: [],
-      deletedWidgetIds: []
+      deletedWidgetIds: [],
+      isSaving: false
     })
   }
 
@@ -32,19 +33,23 @@ class WidgetListComponent extends Component {
 
   addNewWidget = () => {
     const widget = {
+      id: this.state.tempId,
       type: 'HEADING',
       size: 1,
-      tempId: this.state.tempId
-    };
+      isNew: true
+  };
 
-    this.setState({tempId: widget.tempId += '0'});
+    this.setState({tempId: widget.id += '0'});
     this.handleNewWidget(widget);
   };
 
   saveWidgets = () => {
-    this.state.newWidgets.forEach(widget => widgetsService.createWidget(this.props.selectedTopicID, widget));
-    this.state.updatedWidgets.forEach(widget => widgetsService.updateWidget(widget.id, widget))
-    this.state.deletedWidgetIds.forEach(id => widgetsService.deleteWidget(id));
+    this.setState({isSaving: true});
+
+    this.state.newWidgets.forEach(widget => this.props.addWidget(this.props.selectedTopicID, widget));
+    this.state.updatedWidgets.forEach(widget => this.props.updateWidget(widget.id, widget));
+    this.state.deletedWidgetIds.forEach(id => this.props.deleteWidget(id));
+
     this.resetState();
   };
 
@@ -67,12 +72,19 @@ class WidgetListComponent extends Component {
 
 
   handleRemoveWidget = (widget) => {
-    if (widget.id) {
+    if (!widget.isNew) {
       this.props.removeWidget(widget.id);
       const deletedWidgetIdArr = [...this.state.deletedWidgetIds, widget.id];
       this.setState({deletedWidgetIds: deletedWidgetIdArr});
     } else {
-      this.props.removeWidget(widget.tempId);
+      this.props.removeWidget(widget.id);
+      const updatedWidgetsArr = this.state.updatedWidgets.filter(w => w.id !== widget.id);
+      const newWidgetsArr = this.state.newWidgets.filter(w => w.id !== widget.id);
+
+      this.setState({
+        newWidgets: newWidgetsArr,
+        updatedWidgets: updatedWidgetsArr
+      });
     }
 
   }
@@ -81,9 +93,14 @@ class WidgetListComponent extends Component {
     return (
       <div className="row flex-grow-1">
         <div className="col-12">
-          {this.props.widgets &&
+          {this.props.widgets && this.props.widgets.length > 0 && !this.state.isSaving &&
           <div className="mb-3 text-right">
            <button className="btn btn-success" onClick={() => this.saveWidgets(this.props)}>Save</button>
+          </div>
+          }
+          {this.state.isSaving &&
+          <div className="mb-3 text-right">
+            <button className="btn btn-warning disabled">Saving...</button>
           </div>
           }
           <div className="widget-list d-flex flex-column">
@@ -128,18 +145,20 @@ const dispatchToPropertyMapper = dispatch => {
         dispatch(widgetActions.createWidget(widget));
     },
 
-    deleteWidget: widgetID => {
-      widgetsService.deleteWidget(widgetID).then(() => {
-      });
-    },
-
-    updateWidget: widget => {
-      widgetsService.updateWidget(widget.id, widget).then(() => {
-      });
-    },
-
     removeWidget: widgetID => {
       dispatch(widgetActions.deleteWidget(widgetID));
+    },
+
+    addWidget: (topicId, widget) => {
+      return widgetsService.createWidget(topicId, widget);
+    },
+
+    deleteWidget: widgetID => {
+      return widgetsService.deleteWidget(widgetID);
+    },
+
+    updateWidget: (widgetId, widget) => {
+      return widgetsService.updateWidget(widgetId, widget);
     }
 
   };

@@ -2,19 +2,19 @@ import React from "react";
 import '../../../styles/Widgets.css';
 import HeadingPreviewComponent from "./HeadingPreviewComponent";
 
-const HeadingWidgetComponent = ({ handleTextChange, handleSizeChange, handleNameChange, name, previewText, textSize }) => {
+const HeadingWidgetComponent = ({ handleInput, name, previewText, textSize }) => {
     return (
       <>
         <div className="row">
           <div className="col-12">
                 <div className="row my-2">
                     <div className="col-12">
-                        <input type="text" className="form-control"  onChange={(e) => handleTextChange(e.target.value)}  placeholder={previewText || "Widget Text"}/>
+                        <input type="text" className="form-control"  onChange={(e) => handleInput(e.target.value, "text")}  placeholder={previewText || "Widget Text"}/>
                     </div>
                 </div>
                 <div className="row my-2">
                     <div className="col-12">
-                    <select className="form-control" onChange={(e) => handleSizeChange(e.target.value)} defaultValue={textSize || "1"}>
+                    <select className="form-control" onChange={(e) => handleInput(e.target.value, "size")} defaultValue={textSize || "1"}>
                       <option value="1">Heading 1</option>
                       <option value="2">Heading 2</option>
                       <option value="3">Heading 3</option>
@@ -26,7 +26,7 @@ const HeadingWidgetComponent = ({ handleTextChange, handleSizeChange, handleName
                 </div>
                 <div className="row my-2">
                     <div className="col-12">
-                      <input type="text" className="form-control" onChange={(e) => handleNameChange(e.target.value)} placeholder={name || "Widget Name"} />
+                      <input type="text" className="form-control" onChange={(e) => handleInput(e.target.value, "name")} placeholder={name || "Widget Name"} />
           </div>
         </div>
                 <div className="row">

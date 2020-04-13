@@ -16,42 +16,14 @@ class WidgetListItemComponent extends Component {
   };
 
 
-  handleUpdate = () => {
+  handleInput = (input, property) => {
+    this.setState({ [property]: input });
+    this.props.widget[property] = input;
     if (!this.state.isUpdated) {
       this.props.updateWidget(this.props.widget, true);
     }
     this.setState({isUpdated: true})
   }
-
-  handleNameChange = newName => {
-    this.setState({ name: newName });
-    this.props.widget.name = newName;
-    this.handleUpdate();
-  };
-
-  handleSrcChange = newSrc => {
-    this.setState({ src: newSrc });
-    this.props.widget.src = newSrc;
-    this.handleUpdate();
-  };
-
-  handleValueChange = newValue => {
-    this.setState({ value: newValue });
-    this.props.widget.value = newValue;
-    this.handleUpdate();
-  };
-
-  handleTextChange = newText => {
-    this.setState({ text: newText });
-    this.props.widget.text = newText;
-    this.handleUpdate();
-  };
-
-  handleSizeChange = (newSize) => {
-    this.setState({ size: newSize });
-    this.props.widget.size = newSize;
-    this.handleUpdate();
-  };
 
   handleTypeChange = newType => {
     this.setState({ type: newType });
@@ -67,7 +39,7 @@ class WidgetListItemComponent extends Component {
           <div className="col-12">
             <div className="card">
               <div className="card-body">
-                <div className="widget-heading row">
+                <div className="widget-heading row align-items-start">
                   <div className="col-6">
                     <h2>{this.state.name || "Unnamed Widget"}</h2>
                   </div>
@@ -93,9 +65,7 @@ class WidgetListItemComponent extends Component {
                 <div className="widget-body">
                   {this.props.widget.type === "HEADING" &&
                   <HeadingWidget
-                      handleNameChange={this.handleNameChange}
-                      handleTextChange={this.handleTextChange}
-                      handleSizeChange={this.handleSizeChange}
+                      handleInput={this.handleInput}
                       previewText={this.state.text}
                       textSize={this.state.size}
                       name={this.state.name}
@@ -103,16 +73,13 @@ class WidgetListItemComponent extends Component {
                   }
                   {this.props.widget.type === "PARAGRAPH" &&
                   <ParagraphWidgetComponent
-                      handleNameChange={this.handleNameChange}
-                      handleTextChange={this.handleTextChange}
+                      handleInput={this.handleInput}
                       previewText={this.state.text}
                       name={this.state.name}
                   />                  }
                   {this.props.widget.type === "LIST" &&
                   <ListWidgetComponent
-                      handleNameChange={this.handleNameChange}
-                      handleTextChange={this.handleTextChange}
-                      handleValueChange={this.handleValueChange}
+                      handleInput={this.handleInput}
                       previewText={this.state.text}
                       valueText={this.state.value}
                       name={this.state.name}
@@ -120,8 +87,7 @@ class WidgetListItemComponent extends Component {
                   }
                   {this.props.widget.type === "IMAGE" &&
                   <ImageWidgetComponent
-                      handleNameChange={this.handleNameChange}
-                      handleSrcChange={this.handleSrcChange}
+                      handleInput={this.handleInput}
                       previewText={this.state.text}
                       srcText={this.state.src}
                       name={this.state.name}

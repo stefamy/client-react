@@ -1,6 +1,8 @@
 import { LOCAL_API_URL } from "../constants/app-constants";
 
 export const createWidget = async (topicId, widget) => {
+  delete widget.id;
+  delete widget.isNew;
   const response = await fetch(`${LOCAL_API_URL}/topics/${topicId}/widgets`, {
     method: "POST",
     body: JSON.stringify(widget),
