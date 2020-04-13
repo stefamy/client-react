@@ -10,3 +10,8 @@
 p {
     white-space: pre-line;
 }
+
+
+.btn-new-widget.fab {
+    z-index: 10000;
+}

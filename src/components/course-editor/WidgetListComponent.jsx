@@ -5,6 +5,7 @@ import widgetActions from "../../actions/WidgetActions";
 import {connect} from "react-redux";
 
 class WidgetListComponent extends Component {
+
   state = {
     newWidgets: [],
     updatedWidgets: [],
@@ -17,7 +18,8 @@ class WidgetListComponent extends Component {
       newWidgets: [],
       updatedWidgets: [],
       deletedWidgetIds: [],
-      isSaving: false
+      isSaving: false,
+      tempId: 'A'
     })
   }
 
@@ -31,55 +33,44 @@ class WidgetListComponent extends Component {
     }
   }
 
-  addNewWidget = () => {
-    const widget = {
-      id: this.state.tempId,
-      type: 'HEADING',
-      size: 1,
-      isNew: true
-  };
-
-    this.setState({tempId: widget.id += '0'});
-    this.handleNewWidget(widget);
-  };
-
-  saveWidgets = () => {
-    this.setState({isSaving: true});
-
-    this.state.newWidgets.forEach(widget => this.props.addWidget(this.props.selectedTopicID, widget));
-    this.state.updatedWidgets.forEach(widget => this.props.updateWidget(widget.id, widget));
-    this.state.deletedWidgetIds.forEach(id => this.props.deleteWidget(id));
-
-    this.resetState();
-  };
 
   handleNewWidget = (widget) => {
     this.props.createWidget(widget);
+
+    // Store them in a separate array to add to DB later, on save:
     const newWidgetsArr = [...this.state.newWidgets, widget];
     this.setState({newWidgets: newWidgetsArr});
   }
 
   handleUpdateWidget = (widget, removeOld) => {
-    let updatedWidgetsArr = this.state.updatedWidgets.length > 0 ? [...this.state.updatedWidgets] : [];
-
-    if (removeOld) {
-      updatedWidgetsArr = updatedWidgetsArr.filter(w => w.id !== widget.id);
+    if (widget.isNew) {
+      const newWidgetsArr = this.state.newWidgets.map(w => (w.id === widget.id) ? widget : w);
+      this.setState({newWidgets: [...newWidgetsArr]});
+      console.log('updated new widget:', this.state);
     }
-
-    updatedWidgetsArr.push(widget);
-    this.setState({updatedWidgets: [...updatedWidgetsArr]});
+    else {
+      let updatedWidgetsArr = this.state.updatedWidgets.length > 0 ? [...this.state.updatedWidgets] : [];
+      updatedWidgetsArr = removeOld ? updatedWidgetsArr.filter(w => w.id !== widget.id) : updatedWidgetsArr;
+      updatedWidgetsArr.push(widget);
+      this.setState({updatedWidgets: [...updatedWidgetsArr]});
+    }
   }
 
 
   handleRemoveWidget = (widget) => {
     if (!widget.isNew) {
-      this.props.removeWidget(widget.id);
+      this.props.deleteWidget(widget.id);
+
+      // Store them in a separate array to add to DB later, on save:
       const deletedWidgetIdArr = [...this.state.deletedWidgetIds, widget.id];
       this.setState({deletedWidgetIds: deletedWidgetIdArr});
-    } else {
-      this.props.removeWidget(widget.id);
-      const updatedWidgetsArr = this.state.updatedWidgets.filter(w => w.id !== widget.id);
+    }
+    else {
+      this.props.deleteWidget(widget.id);
+
+      // Remove them from stored state arrays so they're not added to DB on save:
       const newWidgetsArr = this.state.newWidgets.filter(w => w.id !== widget.id);
+      const updatedWidgetsArr = this.state.updatedWidgets.filter(w => w.id !== widget.id);
 
       this.setState({
         newWidgets: newWidgetsArr,
@@ -89,9 +80,52 @@ class WidgetListComponent extends Component {
 
   }
 
+  addNewWidget = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const widget = {
+      id: this.state.tempId,
+      type: 'HEADING',
+      size: 1,
+      isNew: true
+    };
+
+    this.setState({tempId: widget.id += '0'});
+    this.handleNewWidget(widget);
+  }
+
+
+  saveWidgets = () => {
+    this.setState({isSaving: true});
+    this.saveAllNewWidgets(this.props.selectedTopicID, this.state.newWidgets)
+    .then(() => this.saveAllUpdatedWidgets(this.state.updatedWidgets))
+    .then(() => this.saveAllDeletedWidgets(this.state.deletedWidgetIds))
+    .then(() => this.resetState());
+  };
+
+  saveAllNewWidgets (topicId, newWidgets)  {
+    return Promise.all(newWidgets.map(async widget => {
+      await widgetsService.createWidget(topicId, widget);
+    }));
+  }
+
+  saveAllUpdatedWidgets (updatedWidgets)  {
+    return Promise.all(updatedWidgets.map(async widget => {
+      await widgetsService.updateWidget(widget.id, widget);
+    }));
+  }
+
+  saveAllDeletedWidgets (deletedWidgetIds)  {
+    return Promise.all(deletedWidgetIds.map(async widgetId => {
+      await widgetsService.deleteWidget(widgetId);
+    }));
+  }
+
+
   render() {
     return (
-      <div className="row flex-grow-1">
+        <>
+        <div className="row flex-grow-1">
         <div className="col-12">
           {this.props.widgets && this.props.widgets.length > 0 && !this.state.isSaving &&
           <div className="mb-3 text-right">
@@ -103,7 +137,7 @@ class WidgetListComponent extends Component {
             <button className="btn btn-warning disabled">Saving...</button>
           </div>
           }
-          <div className="widget-list d-flex flex-column">
+          <div id="widget-list" className="widget-list d-flex flex-column">
           {this.props.widgets &&
             this.props.widgets.map((widget, index) => (
                 <WidgetListItemComponent
@@ -115,15 +149,14 @@ class WidgetListComponent extends Component {
             ))}
         </div>
         </div>
-        <div className="col-12 text-right">
-          <button className="btn-danger btn-lg fab">
-            <i className="fa fa-plus"
-               onClick={() => this.addNewWidget()}
-            ></i>
+        <div className="col-12 text-right mb-3">
+          <button onClick={(e) => this.addNewWidget(e)} className="btn-primary btn-new-widget btn-lg">
+            <i className="fa fa-plus"  ></i>
           </button>
         </div>
       </div>
-    );
+      </>
+  );
   }
 }
 
@@ -141,26 +174,13 @@ const dispatchToPropertyMapper = dispatch => {
       });
     },
 
-    createWidget: (widget) => {
-        dispatch(widgetActions.createWidget(widget));
+    createWidget: widget => {
+      dispatch(widgetActions.createWidget(widget));
     },
 
-    removeWidget: widgetID => {
-      dispatch(widgetActions.deleteWidget(widgetID));
-    },
-
-    addWidget: (topicId, widget) => {
-      return widgetsService.createWidget(topicId, widget);
-    },
-
-    deleteWidget: widgetID => {
-      return widgetsService.deleteWidget(widgetID);
-    },
-
-    updateWidget: (widgetId, widget) => {
-      return widgetsService.updateWidget(widgetId, widget);
+    deleteWidget: widgetId => {
+      dispatch(widgetActions.deleteWidget(widgetId));
     }
-
   };
 };
 

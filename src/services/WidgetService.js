@@ -56,6 +56,7 @@ export const deleteWidget = async (widgetId) => {
   return await response.json();
 }
 
+
 export default {
   createWidget,
   findWidgetsForTopic,

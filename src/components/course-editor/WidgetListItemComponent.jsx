@@ -57,8 +57,8 @@ class WidgetListItemComponent extends Component {
                       <option value="LIST">List Widget</option>
                       <option value="IMAGE">Image Widget</option>
                     </select>
-                    <button className="btn btn-danger">
-                      <i className="fa fa-trash" onClick={() => this.props.removeWidget(this.props.widget)}></i>
+                    <button className="btn btn-danger btn-new-widget" onClick={() => this.props.removeWidget(this.props.widget)}>
+                      <i className="fa fa-trash"></i>
                     </button>
                   </div>
                 </div>

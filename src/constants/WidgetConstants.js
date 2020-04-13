@@ -2,4 +2,5 @@ export const CREATE_WIDGET = "CREATE_WIDGET";
 export const FIND_ALL_WIDGETS = "FIND_ALL_WIDGETS";
 export const DELETE_WIDGET = "DELETE_WIDGET";
 export const UPDATE_WIDGET = "UPDATE_WIDGET";
+export const SAVE_ALL_WIDGETS = "SAVE_ALL_WIDGETS";
 
